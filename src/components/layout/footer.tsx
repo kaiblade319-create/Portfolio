@@ -90,7 +90,7 @@ const Footer = () => {
         <div className="mt-10 border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground/70">
           <p>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
           <p className="font-mono tracking-wider text-primary/70">
-            DATA SCIENCE &amp; ANALYTICS PORTFOLIO
+            PERSONAL PORTFOLIO
           </p>
         </div>
       </div>

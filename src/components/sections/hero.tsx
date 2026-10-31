@@ -2,8 +2,7 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Download, User } from 'lucide-react';
-import NeuralNetworkBackground from '@/components/ui/neural-network-background';
-// import { SyntheticBackground } from '@/components/ui/synthetic-background';
+import { siteConfig } from '@/config/site';
 
 const Hero = () => {
   const heroStats = [
@@ -26,17 +25,17 @@ const Hero = () => {
       <div className="container z-10 mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center space-y-6">
           <p className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-5 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary md:text-sm">
-            Target Role: Data Analyst (Path to Data Engineer and Data Scientist)
+            {siteConfig.role.badge}
           </p>
           <div className="space-y-2">
             <h1 className="text-5xl md:text-7xl font-bold font-headline tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
-              Kaushar Halani
+              {siteConfig.name}
             </h1>
             <h2 className="mx-auto max-w-5xl text-2xl md:text-3xl font-body text-foreground">
-              Aspiring Data Analyst Building Toward Data Engineering & Data Science
+              {siteConfig.tagline}
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-base text-muted-foreground md:text-lg leading-relaxed">
-              I transform raw data into decision-ready insights through practical analysis, dashboarding, and reproducible workflows while growing into end-to-end data and ML engineering.
+              {siteConfig.bio}
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-4">

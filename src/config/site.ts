@@ -11,15 +11,15 @@ export const siteConfig = {
   initials: "KH",
 
   role: {
-    current: "Aspiring Data Analyst",
-    path: "Data Analyst → Data Engineer → Data Scientist / AI-ML Engineer",
-    badge: "Target Role: Data Analyst (Path to Data Engineer and Data Scientist)",
-    openTo: "Open to internships, entry-level, and freelance data roles",
+    current: "Computer Science & Engineering Student",
+    path: "Technology, Machine Learning & Software Development",
+    badge: "Open to Internships & Entry-Level Opportunities",
+    openTo: "Open to internships, entry-level, and technical roles",
   },
 
-  tagline: "Aspiring Data Analyst Building Toward Data Engineering & Data Science",
+  tagline: "Building Practical Technology, Machine Learning & Software Solutions",
 
-  bio: "I transform raw data into decision-ready insights through practical analysis, dashboarding, and reproducible workflows while growing into end-to-end data and ML engineering.",
+  bio: "I transform complex problems and raw datasets into structured solutions, actionable insights, and reproducible workflows across modern software and data stacks.",
 
   /** ── Update these with your real URLs ── */
   links: {
@@ -41,9 +41,9 @@ export const siteConfig = {
 
   /** ── SEO ── */
   seo: {
-    title: "Kaushar Halani — Data Analyst | Data Engineer | Data Scientist",
+    title: "Kaushar Halani — Portfolio",
     description:
-      "Aspiring Data Analyst building toward Data Engineering and Data Science. Projects in churn prediction, sentiment analysis, sales forecasting, and housing price modelling.",
+      "Personal portfolio of Kaushar Halani showcasing machine learning, software engineering, and analytical projects.",
     url: "https://kausharhalani.replit.app/",
   },
 } as const;

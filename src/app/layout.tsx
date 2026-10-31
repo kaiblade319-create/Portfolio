@@ -1,40 +1,24 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Inter, Space_Grotesk } from 'next/font/google';
 import ScrollToTopButton from '@/components/ui/scroll-to-top-button';
 import PreloaderWrapper from '@/components/preloader-wrapper';
 import ConditionalNavbar from '@/components/conditional-navbar';
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-space-grotesk',
-  display: 'swap',
-});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:9002';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Kaushar Halani | Data Science Portfolio',
+    default: 'Kaushar Halani | Portfolio',
     template: '%s | Kaushar Halani',
   },
   description:
-    'Portfolio of Kaushar Halani featuring machine learning, NLP, and data analysis projects with practical outcomes and technical documentation.',
+    'Portfolio of Kaushar Halani featuring engineering, machine learning, and analytical projects with technical documentation.',
   keywords: [
     'Kaushar Halani',
-    'Data Science Portfolio',
+    'Portfolio',
     'Machine Learning Projects',
-    'NLP Projects',
-    'Data Analysis',
+    'Software Engineering',
     'Python',
     'Next.js Portfolio',
   ],
@@ -45,9 +29,9 @@ export const metadata: Metadata = {
     type: 'website',
     url: '/',
     siteName: 'Kaushar Halani Portfolio',
-    title: 'Kaushar Halani | Data Science Portfolio',
+    title: 'Kaushar Halani | Portfolio',
     description:
-      'Machine learning, NLP, and data analytics projects with clear problem statements, approach, and measurable outcomes.',
+      'Engineering and machine learning projects with clear problem statements, approach, and measurable outcomes.',
     images: [
       {
         url: '/opengraph-image',
@@ -59,9 +43,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kaushar Halani | Data Science Portfolio',
+    title: 'Kaushar Halani | Portfolio',
     description:
-      'Data science portfolio with ML, NLP, and analytics projects focused on real-world outcomes.',
+      'Portfolio with ML and software projects focused on real-world outcomes.',
     images: ['/opengraph-image'],
   },
   robots: {
@@ -87,14 +71,14 @@ export default function RootLayout({
     '@type': 'Person',
     name: 'Kaushar Halani',
     url: siteUrl,
-    jobTitle: 'Data Science Student',
+    jobTitle: 'Student & Developer',
     description:
-      'Data science portfolio featuring machine learning, NLP, and analytics projects.',
+      'Personal portfolio featuring engineering, machine learning, and software projects.',
   };
 
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} ${spaceGrotesk.variable} font-body antialiased`}>
+      <body className="font-body antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

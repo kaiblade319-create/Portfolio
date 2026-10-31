@@ -312,7 +312,7 @@ export const languages: Language[] = [
 
 
 export const aboutMe = {
-  description: "I'm Kaushar Halani, a Computer Science (Data Science) student focused on solving practical business problems with clean analysis, dashboards, and actionable reporting. I enjoy turning raw, messy datasets into structured insights that support better decisions.\n\nMy current career target is Data Analyst, where I can strengthen real-world analytics execution and stakeholder communication. Over time, I'm building toward Data Engineer and Data Scientist roles by deepening my skills in data pipelines, modeling, and production-ready ML workflows.\n\nI'm actively looking for internships and entry-level opportunities where I can contribute with discipline, ownership, and continuous learning.",
+  description: "I'm Kaushar Halani, a Computer Science student focused on solving practical challenges through clean analytical workflows, dashboards, and robust code. I enjoy turning raw, messy datasets and complex problems into structured solutions that support better decisions.\n\nI focus on strengthening real-world execution, solid software and data fundamentals, and clear communication. I am continuously exploring emerging technologies, model development, and scalable pipelines to build impactful projects.\n\nI'm actively looking for internships and entry-level opportunities where I can contribute with discipline, ownership, and continuous learning.",
   imageUrl: PlaceHolderImages.find(p => p.id === 'about-me')?.imageUrl ?? 'https://picsum.photos/seed/104/400/400',
   imageHint: PlaceHolderImages.find(p => p.id === 'about-me')?.imageHint ?? 'portrait headshot',
 };
