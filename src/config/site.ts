@@ -11,15 +11,15 @@ export const siteConfig = {
   initials: "KH",
 
   role: {
-    current: "Computer Science & Engineering Student",
-    path: "Technology, Machine Learning & Software Development",
-    badge: "Open to Internships & Entry-Level Opportunities",
-    openTo: "Open to internships, entry-level, and technical roles",
+    current: "High-Agency Problem Solver & Builder",
+    path: "Root-Cause Diagnostics · Rapid Adaptation · Systems Automation",
+    badge: "High-Agency Problem Solver · Rapid Adaptability · Operational Precision",
+    openTo: "Open to high-impact internships, entry-level roles, and technical generalist challenges",
   },
 
-  tagline: "Building Practical Technology, Machine Learning & Software Solutions",
+  tagline: "Solving Bottlenecks From the Root. Engineering Systems That Protect & Grow Business Value.",
 
-  bio: "I transform complex problems and raw datasets into structured solutions, actionable insights, and reproducible workflows across modern software and data stacks.",
+  bio: "In the era of AI and rapid tech shifts, organizations don't just need specialists who only know one tool—they need adaptable builders who run toward complex problems. I combine business-first thinking with a relentless builder's mindset: diagnosing root causes, mastering any stack required to get the job done, and delivering automated, resilient systems that eliminate losses and drive real results.",
 
   /** ── Update these with your real URLs ── */
   links: {
@@ -31,19 +31,19 @@ export const siteConfig = {
     profile:   "/profile",
   },
 
-  /** ── Hero stats — replace with real numbers when ready ── */
+  /** ── Core Impact Pillars ── */
   stats: [
-    { value: "20+",  label: "Projects" },
-    { value: "10+",  label: "Technologies" },
-    { value: "5+",   label: "Dashboards" },
-    { value: "100%", label: "Dedication" },
+    { value: "Root-Cause",   label: "Deep Diagnostics & Friction Removal" },
+    { value: "High-Agency",  label: "Fearless & Rapid Stack Mastery" },
+    { value: "Automated",    label: "Operational & Workflow Precision" },
+    { value: "Value-First",  label: "Measurable ROI & Client Impact" },
   ],
 
   /** ── SEO ── */
   seo: {
-    title: "Kaushar Halani — Portfolio",
+    title: "Kaushar Halani — High-Agency Problem Solver & Builder",
     description:
-      "Personal portfolio of Kaushar Halani showcasing machine learning, software engineering, and analytical projects.",
+      "Portfolio of Kaushar Halani. Diagnosing root causes, mastering modern stacks with fearless adaptability, and building automated systems that protect and grow business value.",
     url: "https://kausharhalani.replit.app/",
   },
 } as const;

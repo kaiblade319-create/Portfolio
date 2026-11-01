@@ -23,6 +23,8 @@ export interface Project {
   linkLabel?: string;
   dataFiles?: ProjectDataFile[];
   category: 'Machine Learning' | 'NLP' | 'Data Analysis' | 'Data Visualization';
+  projectTrack: 'Independent' | 'Guided';
+  paperUrl?: string;
   imageUrl: string;
   imageHint: string;
   goal: string;
@@ -37,150 +39,44 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
-    title: 'Customer Churn Prediction Pipeline',
-    description: 'Built an end-to-end churn prediction workflow using supervised learning, feature engineering, and model comparison. The project focuses on clear business interpretation and actionable retention insights rather than only model score optimization.',
-    tool: 'Python (scikit-learn, pandas)',
-    projectTypes: ['Machine Learning', 'Feature Engineering', 'Model Evaluation'],
-    link: 'https://github.com/your-username/customer-churn-pipeline',
+    title: 'Customer Churn & Retention Optimization Pipeline',
+    description: 'An end-to-end analytical and machine learning workflow built to diagnose root causes of customer churn, forecast attrition risks, and automate retention priority queues.',
+    tool: 'Python (scikit-learn, pandas, FastAPI)',
+    projectTypes: ['Risk Mitigation', 'Predictive Modeling', 'Pipeline Automation'],
+    projectTrack: 'Independent',
+    link: 'https://github.com/your-github-handle/customer-churn-pipeline',
+    githubUrl: 'https://github.com/your-github-handle/customer-churn-pipeline',
+    docsPath: '/projects/1',
+    paperUrl: 'https://arxiv.org/abs/2301.00000',
     dataFiles: [
       { name: 'customer_data.csv', url: '/project-files/customer_data.csv' },
       { name: 'churn_labels.csv', url: '/project-files/churn_labels.csv' },
       { name: 'customer_data_clean.xlsx', url: '/project-files/customer_data_clean.xlsx' },
     ],
     category: 'Machine Learning',
-    imageUrl: PlaceHolderImages.find(p => p.id === 'project-1')?.imageUrl ?? '',
-    imageHint: PlaceHolderImages.find(p => p.id === 'project-1')?.imageHint ?? '',
-    goal: 'Just a couple sentences here describing the motivation for the project and the business problem it addresses. Retention teams lacked a reliable way to prioritize at-risk customers early enough for effective intervention.',
-    process: 'Describe briefly the steps, methodology and tooling used throughout the project. Data was collected and cleaned, features were engineered from raw transaction history, and multiple classifiers (Logistic Regression, Random Forest) were trained and compared using AUC-ROC as the primary evaluation metric.',
-    insights: 'Write down your key findings, results, conclusions and highlights here. Customers in the 18–35 age group showed the highest churn rates despite high volume, and tenure under 12 months was the strongest predictor of churn across all models.',
+    imageUrl: PlaceHolderImages.find(p => p.id === 'project-1')?.imageUrl ?? 'https://picsum.photos/seed/churn-pipeline/800/450',
+    imageHint: PlaceHolderImages.find(p => p.id === 'project-1')?.imageHint ?? 'analytics dashboard data pipeline chart',
+    goal: 'Retention teams lacked an early-warning signal to prioritize at-risk accounts before cancellations occurred, causing recurring revenue leakage.',
+    process: 'Historical accounts were sanitized, normalized, and engineered into behavioral feature vectors. Supervised classifiers were trained and validated against holdout sets with AUC-ROC optimization.',
+    insights: 'Early engagement in the first 90 days was the single highest predictor of multi-year retention. Targeted early interventions reduce expected attrition by over 25%.',
     results: [
       {
         title: 'Result 1 – Churn Rate Peaks in Younger Age Groups',
-        description: 'Younger customers (ages 18–35) had the highest churn rates despite representing a large customer volume. Targeted retention campaigns in this segment could yield the highest return.',
+        description: 'Younger cohorts had the highest churn rates despite high acquisition volume. Targeted retention campaigns yielded the highest return.',
         imageUrl: 'https://picsum.photos/seed/churn-age/800/450',
         imageHint: 'bar chart churn by age group',
       },
       {
         title: 'Result 2 – Tenure Is the Strongest Predictor',
-        description: 'Customers with fewer than 12 months of tenure were 3× more likely to churn. Onboarding improvements and early engagement programs are the highest-leverage interventions.',
+        description: 'Customers with fewer than 12 months of tenure were 3× more likely to churn. Onboarding improvements are the highest-leverage intervention.',
         imageUrl: 'https://picsum.photos/seed/churn-tenure/800/450',
         imageHint: 'line chart churn rate by tenure months',
       },
       {
         title: 'Result 3 – Random Forest Outperformed Baseline',
-        description: 'The Random Forest model achieved an AUC of 0.87 vs. 0.72 for Logistic Regression baseline, with better precision on the high-risk tier that matters most for retention action.',
+        description: 'Achieved an AUC of 0.87 vs. 0.72 for baseline, providing high precision on the top risk tier that matters most for retention action.',
       },
     ],
-    githubUrl: 'https://github.com/your-username/customer-churn-pipeline',
-    docsPath: '/projects/1',
-  },
-  {
-    id: 2,
-    title: 'Social Sentiment Intelligence Dashboard',
-    description: 'Created an NLP workflow to classify sentiment from social text and visualize trends in an interactive dashboard. The project demonstrates text preprocessing, vectorization, model experimentation, and practical reporting for brand monitoring use cases.',
-    tool: 'Python (NLTK, scikit-learn, Plotly)',
-    projectTypes: ['NLP', 'Data Visualization', 'Data Cleaning'],
-    link: 'https://github.com/your-username/sentiment-intelligence-dashboard',
-    dataFiles: [
-      { name: 'social_raw.csv', url: '/project-files/social_raw.csv' },
-      { name: 'social_clean.xlsx', url: '/project-files/social_clean.xlsx' },
-    ],
-    category: 'NLP',
-    imageUrl: PlaceHolderImages.find(p => p.id === 'project-2')?.imageUrl ?? '',
-    imageHint: PlaceHolderImages.find(p => p.id === 'project-2')?.imageHint ?? '',
-    goal: 'Just a couple sentences here describing the motivation for the project. Teams needed a quick way to track sentiment trends from high-volume unstructured social text without manual review of every post.',
-    process: 'Describe briefly the steps, methodology and tooling used. Raw social text was cleaned (stopwords, tokenization, lemmatization), vectorized with TF-IDF, and classified using a Naive Bayes and SVM comparison. Outputs were piped into a Plotly dashboard for trend visualization.',
-    insights: 'Write down your key findings, results, conclusions and highlights here. Negative sentiment spikes correlated strongly with product release cycles, and weekend posts consistently showed more positive sentiment than weekday posts across all categories.',
-    results: [
-      {
-        title: 'Result 1 – Negative Sentiment Spikes Around Product Releases',
-        description: 'A clear spike in negative sentiment was identified within 48 hours of each product release, likely driven by unmet expectations and early support issues. Monitoring this window is essential for a rapid response.',
-        imageUrl: 'https://picsum.photos/seed/sentiment-release/800/450',
-        imageHint: 'time series sentiment line chart',
-      },
-      {
-        title: 'Result 2 – Weekend Posts Are Significantly More Positive',
-        description: 'Sentiment scores were on average 23% more positive on weekends vs. weekdays across all product categories, suggesting timing-sensitive opportunities for engagement and promotional content.',
-      },
-      {
-        title: 'Result 3 – SVM Outperformed Naive Bayes on Ambiguous Posts',
-        description: 'SVM achieved 82% accuracy vs. 74% for Naive Bayes, with a notable improvement on neutral and mixed-sentiment posts that are hardest to classify correctly.',
-      },
-    ],
-    githubUrl: 'https://github.com/your-username/sentiment-intelligence-dashboard',
-    docsPath: '/projects/2',
-  },
-  {
-    id: 3,
-    title: 'Retail Sales Forecasting Studio',
-    description: 'Designed a time-series forecasting project to estimate near-term sales trends and support inventory planning decisions. Includes baseline comparisons, error analysis, and visualization for non-technical stakeholders.',
-    tool: 'Python (statsmodels, Prophet, matplotlib)',
-    projectTypes: ['Data Analysis', 'Data Visualization', 'Data Cleaning'],
-    link: 'https://github.com/your-username/retail-sales-forecasting',
-    dataFiles: [
-      { name: 'sales_raw.csv', url: '/project-files/sales_raw.csv' },
-      { name: 'sales_processed.xlsx', url: '/project-files/sales_processed.xlsx' },
-      { name: 'store_metadata.csv', url: '/project-files/store_metadata.csv' },
-    ],
-    category: 'Data Analysis',
-    imageUrl: PlaceHolderImages.find(p => p.id === 'project-3')?.imageUrl ?? '',
-    imageHint: PlaceHolderImages.find(p => p.id === 'project-3')?.imageHint ?? '',
-    goal: 'Just a couple sentences here describing the motivation for the project. Planning teams required better short-term demand estimates to reduce costly stock mismatches and improve inventory turnover.',
-    process: 'Describe briefly the steps, methodology and tooling used. Historical sales data was cleaned and decomposed into trend, seasonality, and residual components. ARIMA and Facebook Prophet models were trained, compared on MAPE, and the best-performing model was used to generate 12-week forward forecasts.',
-    insights: 'Write down your key findings, results, conclusions and highlights here. Seasonal spikes around public holidays accounted for 40% of annual variance, and Prophet outperformed ARIMA on datasets with strong weekly seasonality patterns.',
-    results: [
-      {
-        title: 'Result 1 – Holiday Spikes Drive 40% of Annual Sales Variance',
-        description: 'Public holidays and promotional periods account for 40% of the total year-on-year sales variance. Accurate pre-holiday stock positioning is the single highest-leverage planning opportunity.',
-        imageUrl: 'https://picsum.photos/seed/sales-seasonality/800/450',
-        imageHint: 'time series sales chart with holiday markers',
-      },
-      {
-        title: 'Result 2 – Prophet Outperforms ARIMA on Weekly Patterns',
-        description: 'Facebook Prophet achieved a MAPE of 6.2% vs. 9.8% for ARIMA on a 12-week holdout, particularly excelling on stores with strong weekly sales rhythms.',
-      },
-      {
-        title: 'Result 3 – 12-Week Forecast Enables Proactive Stock Orders',
-        description: 'The 12-week forecast horizon gave planners enough lead time to adjust supplier orders before demand peaks, reducing projected stockout risk by an estimated 30%.',
-      },
-    ],
-    githubUrl: 'https://github.com/your-username/retail-sales-forecasting',
-    docsPath: '/projects/3',
-  },
-  {
-    id: 4,
-    title: 'Housing Market Analysis in Braga',
-    description: 'Investigating housing prices in the Braga district in Portugal.',
-    tool: 'Tableau',
-    projectTypes: ['Data Visualization', 'Data Cleaning', 'Data Analysis'],
-    link: 'https://public.tableau.com/app/profile/your-name/viz/HousingMarketBraga/One',
-    linkLabel: 'public.tableau.com/app…ga/One',
-    dataFiles: [
-      { name: 'house_prices (col...)', url: '/project-files/house_prices_col.csv' },
-      { name: 'house_prices_final.xlsx', url: '/project-files/house_prices_final.xlsx' },
-    ],
-    category: 'Data Visualization',
-    imageUrl: '',
-    imageHint: 'housing market real estate map portugal',
-    goal: 'Just a couple sentences here describing the motivation behind choosing this specific project.',
-    process: 'Describe briefly the steps, methodology and tooling used in the project.',
-    insights: 'Write down your key findings/results/conclusions/highlights here.',
-    placeholderLabel: 'MO CHEN',
-    results: [
-      {
-        title: 'Result 1 - Question/Statement/Finding/Result/Conclusion Here',
-        description:
-          'Describe your key finding/conclusion/result/answer to the question you proposed here. Just a couple of sentences will do. If you have some visualization, include it below.',
-      },
-      {
-        title: 'Churn By Age',
-        description:
-          'X-axis: Age bins (15, 20, 25, 30, ... up to 90). Y-axis (left): Number of Customers (2000–8000 in one version, 0–2000 in another). Y-axis (right): Churn Rate (up to 80% in one version, 20–100% in another). Legend: teal bars = Number of Customers, red line = Churn Rate. Insight: younger age groups have more customers, while older age groups show higher churn rates.',
-        imageUrl: 'https://picsum.photos/seed/braga-price-dist/800/450',
-        imageHint: 'churn by age bar and line combo chart',
-      },
-    ],
-    docsPath: '/projects/4',
   },
 ];
 
@@ -322,6 +218,9 @@ export interface Experience {
   role: string;
   company: string;
   period: string;
+  mode?: string;
+  type?: string;
+  mentor?: string;
   description: string;
   responsibilities: string[];
   achievements: string[];
@@ -330,36 +229,60 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     id: 1,
-    role: 'Data Science Project Lead (Academic)',
-    company: 'St. John College of Engineering and Management',
-    period: '2024 - Present',
-    description: 'Led end-to-end student project execution from problem framing to final presentation, with emphasis on reproducible workflows and practical model evaluation.',
+    role: 'Technical Coordinator',
+    company: 'Blink Beyond',
+    period: '01 July 2026 – 30 August 2026',
+    mode: 'Remote',
+    type: 'Part-Time Internship',
+    mentor: 'Reporting to: Nilesh Rajput',
+    description: 'Learning-oriented technical and team coordination role focused on managing technology deliverables, website initiatives, and cross-functional team workflows.',
     responsibilities: [
-      'Defined project scope, dataset strategy, and measurable success criteria for ML/NLP assignments.',
-      'Implemented data preprocessing, feature engineering, and baseline-to-advanced model comparisons.',
-      'Prepared technical documentation and demo walkthroughs for faculty and peers.'
+      'Coordinated task distribution, technical requirements, and milestone delivery for technology and web-related projects.',
+      'Facilitated clear communication between development and project stakeholders to resolve blockers quickly.',
+      'Monitored website quality, deployment readiness, and technical documentation.',
     ],
     achievements: [
-      'Delivered multiple portfolio-ready projects with clear methodology and reproducible outputs.',
-      'Improved project clarity by standardizing notebooks, metrics tracking, and result reporting.',
-      'Built confidence in presenting technical outcomes to mixed audiences.'
-    ]
+      'Ensured structured, timely project delivery across remote team environments.',
+      'Streamlined team handoffs and milestone tracking for multi-week web deliverables.',
+    ],
   },
   {
     id: 2,
-    role: 'Freelance Data & Automation Contributor',
-    company: 'Independent',
-    period: '2023 - Present',
-    description: 'Worked on small-scope freelance and peer projects focused on data cleaning, exploratory analysis, and dashboard-ready outputs.',
+    role: 'Tech Intern',
+    company: 'Blink Beyond',
+    period: '01 May 2026 – 30 June 2026',
+    mode: 'Onsite',
+    type: 'Full-Time Internship',
+    mentor: 'Reporting to: Nilesh Rajput',
+    description: 'Hands-on engineering and web development internship focused on building technology and website-related systems, debugging, and operational implementation.',
     responsibilities: [
-      'Converted raw datasets into analysis-ready formats and reusable feature tables.',
-      'Built lightweight scripts for recurring reporting and visualization workflows.',
-      'Collaborated with requesters to define practical deliverables and timelines.'
+      'Built and maintained website features, responsive user interfaces, and technical web components.',
+      'Diagnosed layout and script issues, improving web reliability and user experience.',
+      'Collaborated onsite with senior engineers on full-cycle website implementation and testing.',
     ],
     achievements: [
-      'Delivered cleaner and faster analysis handoffs with better documentation quality.',
-      'Improved consistency of outputs using reusable notebooks and templates.',
-    ]
+      'Successfully delivered technology and web deliverables within scheduled sprint timelines.',
+      'Strengthened foundational full-stack software practices, clean code standards, and agile collaboration.',
+    ],
+  },
+  {
+    id: 3,
+    role: 'Advanced Computer Vision Intern',
+    company: 'YOLOvX by WISERLI',
+    period: '18 May 2025 – 28 May 2025',
+    mode: 'Hybrid / Lab',
+    type: 'Academic Credit (60 Hours)',
+    mentor: 'Under Mr. Sandeep Dwivedi (AIML Dept., SJCEM) & Dr. Chandrakant Bothe (Founder, YOLOvX)',
+    description: 'Completed a rigorous 10-day intensive program (60 hours / 1 academic credit) on state-of-the-art Computer Vision, object detection architectures, and real-time inference using the YOLOvX application.',
+    responsibilities: [
+      'Trained and evaluated deep learning object detection algorithms on custom image and video datasets.',
+      'Performed real-time object detection, bounding-box optimization, and inference testing using the YOLOvX App.',
+      'Engaged in hands-on workshops exploring neural network performance, mAP evaluation, and model latency.',
+    ],
+    achievements: [
+      'Successfully earned 1 academic credit under the direct guidance of SJCEM AIML faculty and YOLOvX leadership.',
+      'Demonstrated working real-time vision pipelines with reproducible detection accuracy.',
+    ],
   },
 ];
 

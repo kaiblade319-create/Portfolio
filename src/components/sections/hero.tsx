@@ -1,19 +1,14 @@
 
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Download, User } from 'lucide-react';
+import { Briefcase, User } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 
 const Hero = () => {
-  const heroStats = [
-    { value: '20+', label: 'Projects' },
-    { value: '10+', label: 'Technologies' },
-    { value: '5+', label: 'Dashboards' },
-    { value: '100%', label: 'Dedication' },
-  ];
+  const heroStats = siteConfig.stats;
 
   return (
-    <section id="home" className="relative h-dvh overflow-hidden flex items-center justify-center text-center pt-16 md:pt-20">
+    <section id="home" className="relative min-h-dvh flex items-center justify-center text-center pt-24 pb-16 md:pt-28 md:pb-20 overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,hsl(var(--primary)/0.08),transparent_45%),radial-gradient(circle_at_80%_80%,hsl(var(--primary)/0.05),transparent_40%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.35),rgba(0,0,0,0.58))]" />
@@ -41,17 +36,15 @@ const Hero = () => {
           <div className="flex flex-wrap justify-center gap-4">
             <Button asChild size="lg" className="animate-button-pulse shadow-lg shadow-primary/20">
               <Link href="/resume" prefetch={true}>
-                <Download />
+                <Briefcase className="mr-1.5 h-4 w-4" />
                 Resume
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="animate-button-pulse border-primary/30 hover:border-primary/50">
-                <Link href="/profile" prefetch={true}>
-                  <>
-                    <User />
-                    Profile
-                  </>
-                </Link>
+              <Link href="/profile" prefetch={true}>
+                <User className="mr-1.5 h-4 w-4" />
+                Profile
+              </Link>
             </Button>
           </div>
 
@@ -61,10 +54,10 @@ const Hero = () => {
                 key={stat.label}
                 className="rounded-2xl border border-primary/20 bg-card/60 px-4 py-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/45 hover:shadow-lg hover:shadow-primary/15"
               >
-                <p className="text-2xl font-bold font-headline text-primary md:text-3xl">
+                <p className="text-base sm:text-lg md:text-2xl font-bold font-headline text-primary tracking-tight">
                   {stat.value}
                 </p>
-                <p className="mt-1 text-xs md:text-sm text-muted-foreground tracking-wide">{stat.label}</p>
+                <p className="mt-1 text-xs md:text-sm text-muted-foreground tracking-wide leading-tight">{stat.label}</p>
               </div>
             ))}
           </div>
