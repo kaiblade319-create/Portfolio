@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+// List of navigation links for smooth scrolling to sections on the homepage
 const navItems = [
   { name: 'Home', href: '/#home' },
   { name: 'About', href: '/#about' },
@@ -18,18 +19,27 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  // State for mobile drawer open/close
   const [isOpen, setIsOpen] = useState(false);
+  // State to apply blur & border when page is scrolled down
   const [scrolled, setScrolled] = useState(false);
+  // State tracking which section is currently visible in viewport
   const [activeSection, setActiveSection] = useState('home');
   const pathname = usePathname();
 
+  /**
+   * Scroll handler: detects how far down the user has scrolled
+   * and highlights the corresponding section in the navigation bar.
+   */
   const handleScroll = useCallback(() => {
+    // Add glass background once user scrolls beyond 20px
     setScrolled(window.scrollY > 20);
     
+    // Add 100px offset to detect section before it touches the very top
     const scrollPosition = window.scrollY + 100;
     let currentSectionId = '';
 
-    // Find the current section by iterating from bottom to top
+    // Check each section from bottom to top to find current section
     for (let i = navItems.length - 1; i >= 0; i--) {
       const link = navItems[i];
       if (!link.href.startsWith('/#')) continue;
@@ -50,6 +60,7 @@ export default function Navbar() {
     }
   }, []);
 
+  // Listen to window scroll events only on the homepage
   useEffect(() => {
     if (pathname === '/') {
       window.addEventListener('scroll', handleScroll, { passive: true });
@@ -113,21 +124,21 @@ export default function Navbar() {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Brand Name */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="text-xl md:text-2xl font-bold font-heading bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-transparent">
+          <Link href="/" className="flex items-center space-x-2 shrink-0">
+            <div className="text-lg sm:text-xl lg:text-2xl font-bold font-heading bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-transparent whitespace-nowrap">
               Kaushar Halani
             </div>
           </Link>
 
           {/* Desktop Navigation - Pill Style */}
-          <nav className="hidden md:flex items-center gap-2 p-1 bg-secondary rounded-full">
+          <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2 p-1 bg-secondary/80 backdrop-blur-md rounded-full border border-border/60">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={cn(
-                  'px-4 py-2 rounded-full text-sm font-medium transition-all duration-200',
+                  'px-3 xl:px-4 py-1.5 xl:py-2 rounded-full text-xs xl:text-sm font-medium transition-all duration-200',
                   isActive(item.href)
                     ? 'bg-primary text-primary-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
@@ -138,20 +149,20 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden relative z-50">
+          {/* Mobile & Tablet Menu Button */}
+          <div className="lg:hidden relative z-50">
             <button
-              className="p-2 rounded-md border border-border -mr-2 bg-background"
+              className="p-2 rounded-xl border border-border/80 -mr-2 bg-background/90 text-foreground hover:border-primary/40 transition-colors"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Navigation - Outside container for full width */}
+      {/* Mobile & Tablet Navigation Drawer */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -159,7 +170,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-16 left-0 right-0 bg-background border-b border-border shadow-lg"
+            className="lg:hidden absolute top-16 left-0 right-0 bg-background/95 backdrop-blur-lg border-b border-border shadow-2xl"
           >
             <div className="container mx-auto px-4 py-4 space-y-1">
               {navItems.map((item) => (

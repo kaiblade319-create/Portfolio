@@ -39,49 +39,55 @@ const operatingPrinciples = [
 
 const About = () => {
   return (
-    <section id="about" className="py-20 md:py-28 relative">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold font-headline tracking-tight">
+    <section id="about" className="py-14 sm:py-20 md:py-28 relative">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold font-headline tracking-tight">
             About Me
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground mt-3 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-base md:text-lg text-muted-foreground mt-2 sm:mt-3 max-w-2xl mx-auto leading-relaxed">
             High-agency builder driven by root-cause problem solving, rapid adaptability, and measurable business impact.
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           {/* Narrative Column */}
           <div className="lg:col-span-7 space-y-6">
-            <Card className="border border-border/80 bg-card/50 backdrop-blur-sm">
-              <CardContent className="p-6 md:p-8 space-y-5">
-                <h3 className="text-xl md:text-2xl font-bold font-headline text-foreground">
+            <Card className="border border-border/70 bg-card/75 backdrop-blur-md rounded-2xl transition-all duration-300 hover:border-primary/35 hover:shadow-xl hover:shadow-primary/5">
+              <CardContent className="p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-5">
+                <div className="flex items-center gap-2 pb-1 border-b border-border/50">
+                  <span className="text-xs font-mono font-semibold uppercase tracking-wider text-primary">
+                    Profile Narrative
+                  </span>
+                </div>
+
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold font-headline text-foreground leading-snug">
                   Building with Ownership in the AI Era
                 </h3>
                 
-                <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm md:text-base">
                   I am a Computer Science &amp; Engineering student who believes that in today’s landscape, true capability isn’t about memorizing one language or framework. It’s about having the daring and resourcefulness to walk into complex, unfamiliar problems and solve them from the root.
                 </p>
 
-                <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm md:text-base">
                   Whether an organization needs to diagnose hidden operational bottlenecks, automate error-prone workflows, or deploy a machine learning model, I take end-to-end accountability. I use modern AI tools to accelerate research and execution, cutting down time-to-delivery without cutting corners on precision.
                 </p>
 
-                <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm md:text-base">
                   Every system I build is designed to protect your bottom line, eliminate recurring losses, and create experiences that stakeholders and clients genuinely trust.
                 </p>
 
                 {/* Option B CTA Buttons */}
-                <div className="pt-3 flex flex-wrap gap-3">
-                  <Button asChild size="default" className="shadow-lg shadow-primary/20">
+                <div className="pt-2 sm:pt-3 flex flex-wrap gap-2.5 sm:gap-3">
+                  <Button asChild size="default" className="shadow-lg shadow-primary/20 text-xs sm:text-sm h-9 sm:h-10">
                     <Link href="/#projects">
-                      <Folder className="mr-2 h-4 w-4" />
+                      <Folder className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
                       View Projects
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" size="default" className="border-primary/30 hover:border-primary/50">
+                  <Button asChild variant="outline" size="default" className="border-primary/30 hover:border-primary/50 text-xs sm:text-sm h-9 sm:h-10">
                     <Link href="/#contact">
-                      <Mail className="mr-2 h-4 w-4" />
+                      <Mail className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
                       Get in Touch
                     </Link>
                   </Button>
@@ -92,12 +98,15 @@ const About = () => {
 
           {/* Quick Facts / How I Operate Column */}
           <div className="lg:col-span-5">
-            <Card className="border border-primary/25 bg-card/70 backdrop-blur-md shadow-xl shadow-primary/5">
-              <CardContent className="p-6 md:p-7 space-y-5">
-                <div className="pb-3 border-b border-border">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+            <Card className="border border-border/70 bg-card/75 backdrop-blur-md rounded-2xl transition-all duration-300 hover:border-primary/35 hover:shadow-xl hover:shadow-primary/5">
+              <CardContent className="p-4 sm:p-6 md:p-7 space-y-4 sm:space-y-5">
+                <div className="pb-3 border-b border-border/50 flex items-center justify-between">
+                  <p className="text-xs font-mono font-semibold uppercase tracking-wider text-primary">
                     How I Operate
                   </p>
+                  <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
+                    4 Pillars
+                  </span>
                 </div>
 
                 <div className="space-y-4">

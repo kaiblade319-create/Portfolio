@@ -4,6 +4,8 @@ import ScrollToTopButton from '@/components/ui/scroll-to-top-button';
 import PreloaderWrapper from '@/components/preloader-wrapper';
 import ConditionalNavbar from '@/components/conditional-navbar';
 
+import SecurityGuard from '@/components/security-guard';
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:9002';
 
 export const metadata: Metadata = {
@@ -54,9 +56,11 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    noarchive: true,
     googleBot: {
       index: true,
       follow: true,
+      noarchive: true,
       'max-image-preview': 'large',
       'max-video-preview': -1,
       'max-snippet': -1,
@@ -81,11 +85,12 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="dark">
-      <body className="font-body antialiased">
+      <body className="font-body antialiased select-none">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
+        <SecurityGuard />
         <ConditionalNavbar />
         <PreloaderWrapper>
           {children}

@@ -48,8 +48,8 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         // Call onComplete after exit animation
         setTimeout(() => {
           onComplete?.()
-        }, 1000)
-      }, 800)
+        }, 600)
+      }, 400)
       return
     }
 
@@ -57,7 +57,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
       () => {
         setIndex(index + 1)
       },
-      800, // Equal time for all greetings on all devices - respecting every language equally
+      260, // Snappy greeting transition so visitors reach the portfolio in under 2s
     )
   }, [index, onComplete])
 

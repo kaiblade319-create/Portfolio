@@ -19,20 +19,21 @@ export default function ProfilePage() {
   return (
     <div className="flex flex-col min-h-dvh bg-background">
       <main className="flex-1 relative">
-        <div className="absolute top-4 left-4 z-10">
-          <Button asChild variant="outline">
+        <div className="p-4 sm:p-6">
+          <Button asChild variant="outline" className="rounded-xl border-border/70 bg-card/75 backdrop-blur-md hover:border-primary/50 text-xs sm:text-sm">
             <Link href="/">
-              <ArrowLeft className="mr-2" />
+              <ArrowLeft className="mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
               Back to Home
             </Link>
           </Button>
         </div>
-        <div className="container mx-auto px-4 md:px-6 py-12 md:py-20">
-          <div className="text-center mb-12 pt-8">
-            <h1 className="text-4xl md:text-5xl font-bold font-headline">
+        <div className="container mx-auto px-4 md:px-6 py-6 sm:py-10 md:py-16">
+          <div className="text-center mb-8 sm:mb-12 max-w-2xl mx-auto">
+            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-primary">Web Presence</span>
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold font-headline mt-1">
               Online Profiles
             </h1>
-            <p className="text-lg text-muted-foreground mt-2">
+            <p className="text-xs sm:text-base md:text-lg text-muted-foreground mt-2 leading-relaxed">
               Verified platforms that showcase my analytics work, learning, and professional presence.
             </p>
           </div>
@@ -41,26 +42,36 @@ export default function ProfilePage() {
               {profileLinks.map((category, index) => {
                 const Icon = (LucideIcons[category.icon as keyof typeof LucideIcons] || LucideIcons.Link) as React.ComponentType<any>;
                 return (
-                  <AccordionItem key={index} value={`item-${index}`} className="border border-border bg-card rounded-lg transition-all duration-300 hover:shadow-primary/20 hover:shadow-lg">
-                    <AccordionTrigger className="text-xl font-headline p-6 hover:no-underline w-full">
+                  <AccordionItem
+                    key={index}
+                    value={`item-${index}`}
+                    className="border border-border/70 bg-card/75 backdrop-blur-md rounded-2xl overflow-hidden transition-all duration-300 hover:border-primary/45 hover:shadow-xl hover:shadow-primary/10"
+                  >
+                    <AccordionTrigger className="text-base sm:text-lg font-headline p-4 sm:p-5 hover:no-underline w-full">
                       <div className="flex items-center gap-3">
-                        <Icon className="h-6 w-6 text-primary" />
-                        <span>{category.category}</span>
+                        <div className="p-2 rounded-xl bg-primary/10 border border-primary/20 text-primary">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <span className="font-bold">{category.category}</span>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 px-6 pb-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-4 sm:px-6 pb-4 sm:pb-6 pt-2">
                         {category.links.map((link) => {
                           return (
-                            <Card key={link.name} className="bg-background border-border transform transition-all duration-300 hover:scale-105 hover:shadow-primary/10 hover:shadow-md">
+                            <Card
+                              key={link.name}
+                              className="rounded-xl border border-border/70 bg-secondary/50 hover:bg-secondary hover:border-primary/40 transition-all duration-300 group"
+                            >
                               <CardContent className="p-0">
                                 <Link
                                   href={link.url}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="flex items-center gap-3 text-foreground p-4"
+                                  className="flex items-center justify-between gap-3 text-foreground p-3.5"
                                 >
-                                  <span className="font-medium flex-1">{link.name}</span>
+                                  <span className="text-xs sm:text-sm font-medium group-hover:text-primary transition-colors">{link.name}</span>
+                                  <span className="text-[10px] font-mono text-muted-foreground group-hover:text-primary transition-colors">↗</span>
                                 </Link>
                               </CardContent>
                             </Card>

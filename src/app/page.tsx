@@ -36,7 +36,7 @@ export default function Home() {
     <div className="flex flex-col min-h-dvh bg-background">
       <main className="flex-1">
         <Hero />
-        <div className="pt-16 md:pt-20">
+        <div>
         <Separator />
         <MotionSection id="about">
           <About />

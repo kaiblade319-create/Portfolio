@@ -13,13 +13,13 @@ export const siteConfig = {
   role: {
     current: "High-Agency Problem Solver & Builder",
     path: "Root-Cause Diagnostics · Rapid Adaptation · Systems Automation",
-    badge: "High-Agency Problem Solver · Rapid Adaptability · Operational Precision",
+    badge: "High-Agency Problem Solver · Systems Builder",
     openTo: "Open to high-impact internships, entry-level roles, and technical generalist challenges",
   },
 
   tagline: "Solving Bottlenecks From the Root. Engineering Systems That Protect & Grow Business Value.",
 
-  bio: "In the era of AI and rapid tech shifts, organizations don't just need specialists who only know one tool—they need adaptable builders who run toward complex problems. I combine business-first thinking with a relentless builder's mindset: diagnosing root causes, mastering any stack required to get the job done, and delivering automated, resilient systems that eliminate losses and drive real results.",
+  bio: "Adaptable builder combining business-first diagnostics with engineering execution. I solve root bottlenecks, master modern stacks rapidly, and build automated systems that eliminate losses and protect margins.",
 
   /** ── Update these with your real URLs ── */
   links: {
