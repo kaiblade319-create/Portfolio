@@ -125,36 +125,36 @@ export default function ResumePage() {
   return (
     <div className="flex flex-col min-h-dvh bg-background">
       <main className="flex-1 relative">
-        <div className="p-4 sm:p-6">
-          <Button asChild variant="outline" className="rounded-xl border-border/70 bg-card/75 backdrop-blur-md hover:border-primary/50 text-xs sm:text-sm">
-            <Link href="/">
-              <ArrowLeft className="mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
-              Back to Home
-            </Link>
-          </Button>
-        </div>
-        <div className="container mx-auto px-4 md:px-6 py-6 sm:py-10 md:py-16">
+        <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 md:py-12">
+          <div className="mb-6 sm:mb-8">
+            <Button asChild variant="outline" className="rounded-xl border-border/70 bg-card/75 backdrop-blur-md hover:border-primary/50 text-xs sm:text-sm">
+              <Link href="/">
+                <ArrowLeft className="mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                Back to Home
+              </Link>
+            </Button>
+          </div>
           <div className="text-center mb-8 sm:mb-12 max-w-2xl mx-auto">
             <span className="text-xs font-mono font-semibold uppercase tracking-wider text-primary">Career Tracks</span>
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold font-headline mt-1">Choose Your Resume</h1>
-            <p className="text-xs sm:text-base md:text-lg text-muted-foreground mt-2 leading-relaxed">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight mt-1">Choose Your Resume</h1>
+            <p className="text-xs sm:text-base md:text-lg text-muted-foreground mt-2 sm:mt-3 leading-relaxed">
               Role-specific resumes aligned with my current target path: Data Analyst to Data Engineer to Data Scientist.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto items-stretch">
             {jobRoles.map((job) => (
               <Card
                 key={job.role}
-                className="flex flex-col text-center justify-between p-5 sm:p-6 rounded-2xl border border-border/70 bg-card/75 backdrop-blur-md transition-all duration-300 hover:border-primary/45 hover:shadow-xl hover:shadow-primary/10"
+                className="h-full flex flex-col text-center justify-between p-5 sm:p-6 rounded-2xl border border-border/70 bg-card/75 backdrop-blur-md transition-all duration-300 hover:border-primary/45 hover:shadow-xl hover:shadow-primary/10"
               >
                 <CardHeader className="p-0">
                   <CardTitle className="text-lg sm:text-xl font-bold font-headline">{job.role}</CardTitle>
                 </CardHeader>
-                <CardContent className="flex-grow space-y-5 p-0 pt-3">
+                <CardContent className="flex flex-col flex-grow justify-between space-y-5 p-0 pt-3">
                   <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                     {job.description}
                   </p>
-                  <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+                  <div className="flex flex-wrap items-center justify-center gap-2 pt-2 mt-auto">
                     <ResumeDialog role={job.role} type="Text" previewUrl={job.textResume.previewUrl} downloadUrl={job.textResume.downloadUrl} isReady={false} />
                     <ResumeDialog role={job.role} type="Video" previewUrl={job.videoResume.previewUrl} downloadUrl={job.videoResume.downloadUrl} isReady={false} />
                   </div>

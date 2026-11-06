@@ -116,47 +116,56 @@ export default function Navbar() {
       animate={{ y: 0 }}
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled
-          ? 'bg-background/80 backdrop-blur-md border-b border-border'
+        scrolled || isOpen
+          ? 'bg-[#090b10]/90 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/40'
           : 'bg-transparent'
       )}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Brand Name */}
-          <Link href="/" className="flex items-center space-x-2 shrink-0">
-            <div className="text-lg sm:text-xl lg:text-2xl font-bold font-heading bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-transparent whitespace-nowrap">
+          {/* Brand Identity: Sleek Monogram + Scroll-triggered Name Reveal */}
+          <Link href="/" className="flex items-center gap-2.5 shrink-0 group" aria-label="Kaushar Halani Home">
+            {/* Minimalist Executive Monogram */}
+            <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl bg-white/[0.06] border border-white/15 flex items-center justify-center font-mono font-bold text-xs sm:text-sm text-white shadow-sm backdrop-blur-md transition-all duration-300 group-hover:border-white/30 group-hover:bg-white/[0.1]">
+              KH
+            </div>
+
+            {/* Brand Name: clearly visible across mobile and desktop */}
+            <div className="text-sm sm:text-base font-bold font-heading bg-gradient-to-b from-neutral-50 to-neutral-300 bg-clip-text text-transparent whitespace-nowrap">
               Kaushar Halani
             </div>
           </Link>
 
           {/* Desktop Navigation - Pill Style */}
-          <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2 p-1 bg-secondary/80 backdrop-blur-md rounded-full border border-border/60">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className={cn(
-                  'px-3 xl:px-4 py-1.5 xl:py-2 rounded-full text-xs xl:text-sm font-medium transition-all duration-200',
-                  isActive(item.href)
-                    ? 'bg-primary text-primary-foreground shadow-sm'
-                    : 'text-muted-foreground hover:text-foreground'
-                )}
-              >
-                {item.name}
-              </Link>
-            ))}
+          <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2 p-1.5 bg-[#090b10]/70 backdrop-blur-xl rounded-full border border-white/10 shadow-inner">
+            {navItems.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={cn(
+                    'px-3.5 xl:px-4 py-1.5 xl:py-2 rounded-full text-xs xl:text-sm font-medium transition-all duration-200',
+                    active
+                      ? 'bg-white/15 text-white border border-white/25 shadow-sm'
+                      : 'text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent'
+                  )}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Mobile & Tablet Menu Button */}
           <div className="lg:hidden relative z-50">
             <button
-              className="p-2 rounded-xl border border-border/80 -mr-2 bg-background/90 text-foreground hover:border-primary/40 transition-colors"
+              className="p-2.5 rounded-xl border border-white/15 bg-white/5 backdrop-blur-md text-foreground hover:border-white/30 hover:bg-white/10 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/20"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
             >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isOpen ? <X className="h-5 w-5 text-white" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
@@ -165,31 +174,61 @@ export default function Navbar() {
       {/* Mobile & Tablet Navigation Drawer */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="lg:hidden absolute top-16 left-0 right-0 bg-background/95 backdrop-blur-lg border-b border-border shadow-2xl"
-          >
-            <div className="container mx-auto px-4 py-4 space-y-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className={cn(
-                    'block px-4 py-3 text-base rounded-md transition-colors',
-                    isActive(item.href)
-                      ? 'bg-primary text-primary-foreground font-medium'
-                      : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
-                  )}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
+          <>
+            {/* Ambient Backdrop Overlay: softly dims body when menu is open */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setIsOpen(false)}
+              className="lg:hidden fixed inset-0 top-16 md:top-20 bg-black/75 backdrop-blur-md -z-10"
+            />
+
+            {/* Frosted Glassmorphism Dropdown Panel: identical glass aesthetic to navbar */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+              className="lg:hidden absolute top-full left-0 right-0 bg-[#090b10]/95 backdrop-blur-2xl border-b border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden"
+            >
+              {/* Subtle top reflective glass shimmer */}
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+              <div className="container mx-auto px-4 py-3 space-y-1">
+                {navItems.map((item) => {
+                  const active = isActive(item.href);
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className={cn(
+                        'flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 border',
+                        active
+                          ? 'bg-white/10 border-white/25 text-white shadow-sm backdrop-blur-md'
+                          : 'text-zinc-300 border-white/[0.04] bg-white/[0.02] hover:bg-white/[0.06] hover:text-white hover:border-white/10'
+                      )}
+                    >
+                      <span>{item.name}</span>
+                      {active ? (
+                        <span className="flex items-center gap-1.5 text-xs text-zinc-300 font-mono">
+                          <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)]" />
+                          <span>Active</span>
+                        </span>
+                      ) : (
+                        <span className="text-xs text-zinc-500">→</span>
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {/* Bottom ambient glass border */}
+              <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.header>

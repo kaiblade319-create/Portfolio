@@ -15,75 +15,75 @@
     --font-inter: 'Inter', sans-serif;
     --font-space-grotesk: 'Space Grotesk', sans-serif;
 
-    --background: 0 0% 0%; /* Black */
-    --foreground: 0 0% 98%; /* Almost White */
+    --background: 0 0% 4%; /* Deep Obsidian Black */
+    --foreground: 0 0% 98%; /* Crisp White */
 
-    --card: 240 6% 10%;
+    --card: 240 5% 8%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 6% 10%;
+    --popover: 240 5% 8%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 182 100% 74%; /* Electric Blue */
-    --primary-foreground: 182 25% 15%; /* Dark Blue/Black */
+    --primary: 0 0% 98%; /* Crisp Solid White */
+    --primary-foreground: 240 6% 10%; /* Deep Obsidian */
 
-    --secondary: 240 4% 16%;
+    --secondary: 240 4% 15%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 4% 16%;
-    --muted-foreground: 0 0% 63%;
+    --muted: 240 4% 15%;
+    --muted-foreground: 240 5% 65%;
 
-    --accent: 200 42% 79%; /* Light Blue */
-    --accent-foreground: 200 25% 15%; /* Dark Blue/Black */
+    --accent: 240 4% 18%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 182 100% 74%; /* Electric Blue */
+    --border: 240 4% 18%;
+    --input: 240 4% 18%;
+    --ring: 0 0% 80%;
 
     --radius: 0.5rem;
 
-    --chart-1: 182 100% 74%;
-    --chart-2: 200 42% 79%;
-    --chart-3: 197 37% 24%;
+    --chart-1: 0 0% 98%;
+    --chart-2: 240 5% 70%;
+    --chart-3: 240 4% 40%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
   }
 
   .dark {
-    --background: 0 0% 0%; /* Black */
-    --foreground: 0 0% 98%; /* Almost White */
+    --background: 0 0% 4%; /* Deep Obsidian Black */
+    --foreground: 0 0% 98%; /* Crisp White */
 
-    --card: 240 6% 10%;
+    --card: 240 5% 8%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 6% 10%;
+    --popover: 240 5% 8%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 182 100% 74%; /* Electric Blue */
-    --primary-foreground: 182 25% 15%; /* Dark Blue/Black */
+    --primary: 0 0% 98%; /* Crisp Solid White */
+    --primary-foreground: 240 6% 10%; /* Deep Obsidian */
 
-    --secondary: 240 4% 16%;
+    --secondary: 240 4% 15%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 4% 16%;
-    --muted-foreground: 0 0% 63%;
+    --muted: 240 4% 15%;
+    --muted-foreground: 240 5% 65%;
 
-    --accent: 200 42% 79%; /* Light Blue */
-    --accent-foreground: 200 25% 15%; /* Dark Blue/Black */
+    --accent: 240 4% 18%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 182 100% 74%; /* Electric Blue */
+    --border: 240 4% 18%;
+    --input: 240 4% 18%;
+    --ring: 0 0% 80%;
 
-    --chart-1: 182 100% 74%;
-    --chart-2: 200 42% 79%;
-    --chart-3: 197 37% 24%;
+    --chart-1: 0 0% 98%;
+    --chart-2: 240 5% 70%;
+    --chart-3: 240 4% 40%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
   }
@@ -114,17 +114,9 @@
   animation: gradient 8s linear infinite;
 }
 
-@keyframes button-pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
 .animate-button-pulse {
-  animation: button-pulse 2s ease-in-out infinite;
+  /* Disabled continuous pulsing for a calm, professional executive aesthetic */
+  transform: none;
 }
 
 @keyframes float {

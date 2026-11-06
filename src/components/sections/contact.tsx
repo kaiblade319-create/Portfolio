@@ -99,9 +99,13 @@ const Contact = () => {
   return (
     <div className="py-14 sm:py-20 md:py-28">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-headline">Get in Touch</h2>
-          <p className="text-xs sm:text-base md:text-lg text-muted-foreground mt-2 max-w-2xl mx-auto">Open to internships, technical generalist opportunities, and high-impact engineering collaborations. I usually respond within 24 hours.</p>
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold font-headline tracking-tight">
+            Get in Touch
+          </h2>
+          <p className="text-xs sm:text-base md:text-lg text-muted-foreground mt-2 sm:mt-3 max-w-2xl mx-auto leading-relaxed">
+            Open to internships, technical generalist opportunities, and high-impact engineering collaborations. I usually respond within 24 hours.
+          </p>
         </div>
 
         <div className="max-w-2xl mx-auto">

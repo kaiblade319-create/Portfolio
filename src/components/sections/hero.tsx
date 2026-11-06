@@ -18,25 +18,22 @@ const Hero = () => {
   const heroStats = siteConfig.stats;
 
   return (
-    <section id="home" className="relative min-h-dvh flex items-center justify-center text-center pt-20 pb-8 sm:pt-24 sm:pb-12 md:pt-28 md:pb-16 overflow-hidden">
-      {/* Ambient background glow: subtle cyan radial gradients */}
+    <section id="home" className="relative min-h-[85vh] sm:min-h-dvh flex items-center justify-center text-center pt-20 pb-10 sm:pt-24 sm:pb-16 md:pt-28 md:pb-20 overflow-hidden bg-background">
+      {/* Subtle ambient light glow matching the rest of the site */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,hsl(var(--primary)/0.08),transparent_45%),radial-gradient(circle_at_80%_80%,hsl(var(--primary)/0.05),transparent_40%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.35),rgba(0,0,0,0.58))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.03),transparent_60%)]" />
       </div>
       
       {/* Central hero content container */}
       <div className="container z-10 mx-auto px-4 sm:px-6">
         <div className="flex flex-col items-center space-y-3 sm:space-y-4 md:space-y-6 max-w-4xl mx-auto">
-          {/* Badge: compact single line on mobile, expands on tablet/desktop */}
-          <p className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 sm:px-5 sm:py-1.5 text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-wider text-primary">
+          {/* Badge: executive frosted pill - fully visible on mobile and desktop */}
+          <p className="inline-flex flex-wrap items-center justify-center rounded-full border border-white/15 bg-white/[0.04] px-3.5 py-1.5 sm:px-5 sm:py-1.5 text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-wider text-zinc-300 backdrop-blur-md text-center">
             <span>High-Agency Problem Solver</span>
-            <span className="mx-1.5 text-primary/40">·</span>
+            <span className="mx-1.5 text-zinc-600">·</span>
             <span>Systems Builder</span>
-            <span className="hidden sm:inline">
-              <span className="mx-1.5 text-primary/40">·</span>
-              Operational Precision
-            </span>
+            <span className="mx-1.5 text-zinc-600">·</span>
+            <span>Operational Precision</span>
           </p>
 
           <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
@@ -51,32 +48,43 @@ const Hero = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-4 pt-1">
-            <Button asChild size="default" className="sm:h-11 sm:px-6 animate-button-pulse shadow-lg shadow-primary/20 text-xs sm:text-sm">
-              <Link href="/resume" prefetch={true}>
-                <Briefcase className="mr-1.5 h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                Resume
+          {/* Symmetrical CTA Button Grid: Guarantees 50/50 exact center divider collinear with matrix below */}
+          <div className="w-full max-w-xs sm:max-w-sm mx-auto grid grid-cols-2 gap-3 pt-2">
+            <Button
+              asChild
+              size="default"
+              className="w-full h-11 sm:h-12 rounded-xl bg-white text-zinc-950 font-semibold hover:bg-zinc-200 transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 text-xs sm:text-sm"
+            >
+              <Link href="/resume" prefetch={true} className="flex items-center justify-center">
+                <Briefcase className="mr-1.5 h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
+                <span>Resume</span>
               </Link>
             </Button>
-            <Button asChild variant="outline" size="default" className="sm:h-11 sm:px-6 animate-button-pulse border-primary/30 hover:border-primary/50 text-xs sm:text-sm">
-              <Link href="/profile" prefetch={true}>
-                <User className="mr-1.5 h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                Profile
+            <Button
+              asChild
+              size="default"
+              className="w-full h-11 sm:h-12 rounded-xl border border-white/15 bg-white/[0.05] hover:bg-white/[0.12] hover:border-white/25 text-white font-medium transition-all duration-200 backdrop-blur-md hover:-translate-y-0.5 text-xs sm:text-sm"
+            >
+              <Link href="/profile" prefetch={true} className="flex items-center justify-center">
+                <User className="mr-1.5 h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
+                <span>Profile</span>
               </Link>
             </Button>
           </div>
 
-          {/* Impact Cards: 2x2 on mobile, 4 columns on md+ */}
-          <div className="mt-4 sm:mt-6 md:mt-10 grid w-full max-w-4xl grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+          {/* Impact Cards: 2x2 on mobile, 4 columns on md+ with matching center divider */}
+          <div className="mt-4 sm:mt-6 md:mt-10 grid w-full max-w-4xl grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4">
             {heroStats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-xl sm:rounded-2xl border border-primary/20 bg-card/60 p-2.5 sm:p-3 md:p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/45 hover:shadow-lg hover:shadow-primary/15"
+                className="rounded-xl sm:rounded-2xl border border-white/10 bg-white/[0.03] p-2.5 sm:p-3 md:p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06] hover:shadow-lg hover:shadow-black/40"
               >
-                <p className="text-xs sm:text-base md:text-xl font-bold font-headline text-primary tracking-tight">
+                <p className="text-xs sm:text-base md:text-xl font-bold font-headline text-white tracking-tight">
                   {stat.value}
                 </p>
-                <p className="mt-0.5 sm:mt-1 text-[10px] sm:text-xs md:text-sm text-muted-foreground tracking-wide leading-tight">{stat.label}</p>
+                <p className="mt-0.5 sm:mt-1 text-[10px] sm:text-xs md:text-sm text-zinc-400 tracking-wide leading-tight">
+                  {stat.label}
+                </p>
               </div>
             ))}
           </div>

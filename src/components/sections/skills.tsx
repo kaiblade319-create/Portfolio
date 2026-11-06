@@ -10,13 +10,7 @@ import {
   type CEFRLevel,
 } from '@/app/lib/data';
 import { Badge } from '@/components/ui/badge';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardTitle } from '@/components/ui/card';
 import * as LucideIcons from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -66,16 +60,16 @@ const Skills = () => {
   return (
     <div className="py-14 sm:py-20 md:py-28">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-headline">
-            Skills & Expertise
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold font-headline tracking-tight">
+            Skills &amp; Expertise
           </h2>
-          <p className="text-xs sm:text-base md:text-lg text-muted-foreground mt-2">
-            A snapshot of my technical and professional abilities.
+          <p className="text-xs sm:text-base md:text-lg text-muted-foreground mt-2 sm:mt-3 max-w-2xl mx-auto leading-relaxed">
+            A snapshot of my technical disciplines, tools, and professional capabilities.
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto space-y-10 sm:space-y-12">
+        <div className="max-w-5xl mx-auto space-y-10 sm:space-y-12">
           {/* Technical Skills */}
           <div>
             <div className="text-center mb-6">
@@ -84,7 +78,7 @@ const Skills = () => {
                 Technical Disciplines
               </h3>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-12">
+            <div className="flex flex-wrap justify-center lg:grid lg:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-12">
               {skillCategories.map((category) => {
                 const Icon =
                   (LucideIcons[category.icon as keyof typeof LucideIcons] ||
@@ -93,29 +87,29 @@ const Skills = () => {
                   <Card
                     key={category.name}
                     className={cn(
-                      "flex flex-col text-center items-center justify-start p-3 sm:p-4 rounded-2xl border border-border/70 bg-card/75 backdrop-blur-md transition-all duration-300 hover:scale-[1.02]",
+                      "w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-0.67rem)] lg:w-full min-h-[225px] sm:min-h-[235px] h-full flex flex-col items-center justify-between text-center p-3 sm:p-4 rounded-2xl border border-border/70 bg-card/75 backdrop-blur-md transition-all duration-300 hover:scale-[1.02]",
                       skillLevelHoverColor[category.level]
                     )}
                   >
-                    <CardHeader className="items-center p-1 sm:p-2">
-                      <div className="mb-2 p-2 rounded-xl bg-primary/10 border border-primary/20 text-primary">
-                        <Icon className="h-5 w-5 sm:h-7 sm:w-7" />
+                    <div className="flex flex-col items-center w-full">
+                      <div className="mb-2 h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                        <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                       </div>
-                      <CardTitle className="text-sm sm:text-base font-bold font-headline">{category.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex-grow text-center p-1 sm:p-2">
-                      <p className="text-[11px] sm:text-xs text-muted-foreground leading-relaxed">
-                        {category.description}
-                      </p>
-                    </CardContent>
-                    <CardFooter className="p-1 sm:p-2 pt-2">
+                      <CardTitle className="text-xs sm:text-sm md:text-base font-bold font-headline leading-tight">
+                        {category.name}
+                      </CardTitle>
+                    </div>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground leading-relaxed my-auto px-1 py-1">
+                      {category.description}
+                    </p>
+                    <div className="pt-1 w-full flex justify-center">
                       <Badge
                         variant="outline"
                         className={cn('px-2.5 py-0.5 text-[10px] sm:text-xs', skillLevelColor[category.level])}
                       >
                         {category.level}
                       </Badge>
-                    </CardFooter>
+                    </div>
                   </Card>
                 );
               })}
@@ -148,7 +142,7 @@ const Skills = () => {
                 Professional &amp; Soft Skills
               </h3>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+            <div className="flex flex-wrap justify-center lg:grid lg:grid-cols-5 gap-3 sm:gap-4">
               {softSkills.map((skill) => {
                 const Icon =
                   (LucideIcons[skill.icon as keyof typeof LucideIcons] ||
@@ -157,29 +151,29 @@ const Skills = () => {
                   <Card
                     key={skill.name}
                     className={cn(
-                      "flex flex-col text-center items-center justify-start p-3 sm:p-4 rounded-2xl border border-border/70 bg-card/75 backdrop-blur-md transition-all duration-300 hover:scale-[1.02]",
+                      "w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-0.67rem)] lg:w-full min-h-[225px] sm:min-h-[235px] h-full flex flex-col items-center justify-between text-center p-3 sm:p-4 rounded-2xl border border-border/70 bg-card/75 backdrop-blur-md transition-all duration-300 hover:scale-[1.02]",
                       skillLevelHoverColor[skill.level]
                     )}
                   >
-                    <CardHeader className="items-center p-1 sm:p-2">
-                      <div className="mb-2 p-2 rounded-xl bg-primary/10 border border-primary/20 text-primary">
-                        <Icon className="h-5 w-5 sm:h-7 sm:w-7" />
+                    <div className="flex flex-col items-center w-full">
+                      <div className="mb-2 h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                        <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                       </div>
-                      <CardTitle className="text-sm sm:text-base font-bold font-headline">{skill.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex-grow text-center p-1 sm:p-2">
-                      <p className="text-[11px] sm:text-xs text-muted-foreground leading-relaxed">
-                        {skill.description}
-                      </p>
-                    </CardContent>
-                    <CardFooter className="p-1 sm:p-2 pt-2">
+                      <CardTitle className="text-xs sm:text-sm md:text-base font-bold font-headline leading-tight">
+                        {skill.name}
+                      </CardTitle>
+                    </div>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground leading-relaxed my-auto px-1 py-1">
+                      {skill.description}
+                    </p>
+                    <div className="pt-1 w-full flex justify-center">
                       <Badge
                         variant="outline"
                         className={cn('px-2.5 py-0.5 text-[10px] sm:text-xs', skillLevelColor[skill.level])}
                       >
                         {skill.level}
                       </Badge>
-                    </CardFooter>
+                    </div>
                   </Card>
                 );
               })}
@@ -194,7 +188,7 @@ const Skills = () => {
                 Languages
               </h3>
             </div>
-            <div className="grid grid-cols-3 gap-2 sm:gap-4 max-w-3xl mx-auto">
+            <div className="flex flex-wrap justify-center lg:grid lg:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
               {languages.map((language) => {
                 const languageLogoMap: Record<string, string> = {
                   English: 'EN',
@@ -206,29 +200,29 @@ const Skills = () => {
                   <Card
                     key={language.name}
                     className={cn(
-                      "flex flex-col text-center items-center justify-between p-2.5 sm:p-4 rounded-2xl border border-border/70 bg-card/75 backdrop-blur-md transition-all duration-300 hover:scale-[1.02]",
+                      "w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-0.67rem)] lg:w-full min-h-[225px] sm:min-h-[235px] h-full flex flex-col items-center justify-between text-center p-3 sm:p-4 rounded-2xl border border-border/70 bg-card/75 backdrop-blur-md transition-all duration-300 hover:scale-[1.02]",
                       cefrLevelHoverColor[language.level]
                     )}
                   >
-                    <CardHeader className="items-center p-1 sm:p-2">
-                      <div className="mb-1.5 sm:mb-2 h-8 w-8 sm:h-12 sm:w-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-mono font-bold text-xs sm:text-lg">
+                    <div className="flex flex-col items-center w-full">
+                      <div className="mb-2 h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-mono font-bold text-xs sm:text-base shrink-0">
                         {languageCode}
                       </div>
-                      <CardTitle className="text-xs sm:text-base font-bold font-headline">{language.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex-grow text-center p-1 sm:p-2">
-                      <p className="text-[10px] sm:text-xs text-muted-foreground leading-snug sm:leading-relaxed">
-                        {language.description}
-                      </p>
-                    </CardContent>
-                    <CardFooter className="p-1 sm:p-2 pt-1 sm:pt-2">
+                      <CardTitle className="text-xs sm:text-sm md:text-base font-bold font-headline leading-tight">
+                        {language.name}
+                      </CardTitle>
+                    </div>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground leading-relaxed my-auto px-1 py-1">
+                      {language.description}
+                    </p>
+                    <div className="pt-1 w-full flex justify-center">
                       <Badge
                         variant="outline"
-                        className={cn('px-2 sm:px-3 py-0.5 text-[10px] sm:text-xs font-mono', cefrLevelColor[language.level])}
+                        className={cn('px-2.5 sm:px-3 py-0.5 text-[10px] sm:text-xs font-mono', cefrLevelColor[language.level])}
                       >
                         CEFR {language.level}
                       </Badge>
-                    </CardFooter>
+                    </div>
                   </Card>
                 );
               })}

@@ -19,21 +19,21 @@ export default function ProfilePage() {
   return (
     <div className="flex flex-col min-h-dvh bg-background">
       <main className="flex-1 relative">
-        <div className="p-4 sm:p-6">
-          <Button asChild variant="outline" className="rounded-xl border-border/70 bg-card/75 backdrop-blur-md hover:border-primary/50 text-xs sm:text-sm">
-            <Link href="/">
-              <ArrowLeft className="mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
-              Back to Home
-            </Link>
-          </Button>
-        </div>
-        <div className="container mx-auto px-4 md:px-6 py-6 sm:py-10 md:py-16">
+        <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 md:py-12">
+          <div className="mb-6 sm:mb-8">
+            <Button asChild variant="outline" className="rounded-xl border-border/70 bg-card/75 backdrop-blur-md hover:border-primary/50 text-xs sm:text-sm">
+              <Link href="/">
+                <ArrowLeft className="mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                Back to Home
+              </Link>
+            </Button>
+          </div>
           <div className="text-center mb-8 sm:mb-12 max-w-2xl mx-auto">
             <span className="text-xs font-mono font-semibold uppercase tracking-wider text-primary">Web Presence</span>
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold font-headline mt-1">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight mt-1">
               Online Profiles
             </h1>
-            <p className="text-xs sm:text-base md:text-lg text-muted-foreground mt-2 leading-relaxed">
+            <p className="text-xs sm:text-base md:text-lg text-muted-foreground mt-2 sm:mt-3 leading-relaxed">
               Verified platforms that showcase my analytics work, learning, and professional presence.
             </p>
           </div>

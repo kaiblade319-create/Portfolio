@@ -1,4 +1,5 @@
-import Link from 'next/link';
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -38,8 +39,22 @@ const operatingPrinciples = [
 ];
 
 const About = () => {
+  const handleScrollTo = (e: React.MouseEvent, sectionId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
-    <section id="about" className="py-14 sm:py-20 md:py-28 relative">
+    <div className="py-14 sm:py-20 md:py-28 relative">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold font-headline tracking-tight">
@@ -77,19 +92,24 @@ const About = () => {
                   Every system I build is designed to protect your bottom line, eliminate recurring losses, and create experiences that stakeholders and clients genuinely trust.
                 </p>
 
-                {/* Option B CTA Buttons */}
+                {/* Smooth Scroll Action Buttons */}
                 <div className="pt-2 sm:pt-3 flex flex-wrap gap-2.5 sm:gap-3">
-                  <Button asChild size="default" className="shadow-lg shadow-primary/20 text-xs sm:text-sm h-9 sm:h-10">
-                    <Link href="/#projects">
-                      <Folder className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                      View Projects
-                    </Link>
+                  <Button
+                    onClick={(e) => handleScrollTo(e, 'projects')}
+                    size="default"
+                    className="shadow-md shadow-white/10 text-xs sm:text-sm h-9 sm:h-10 bg-white text-zinc-950 font-semibold hover:bg-zinc-200 transition-all cursor-pointer"
+                  >
+                    <Folder className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                    View Projects
                   </Button>
-                  <Button asChild variant="outline" size="default" className="border-primary/30 hover:border-primary/50 text-xs sm:text-sm h-9 sm:h-10">
-                    <Link href="/#contact">
-                      <Mail className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                      Get in Touch
-                    </Link>
+                  <Button
+                    onClick={(e) => handleScrollTo(e, 'contact')}
+                    variant="outline"
+                    size="default"
+                    className="border-white/15 bg-white/[0.04] hover:bg-white/[0.1] text-white text-xs sm:text-sm h-9 sm:h-10 transition-all cursor-pointer"
+                  >
+                    <Mail className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                    Get in Touch
                   </Button>
                 </div>
               </CardContent>
@@ -139,7 +159,7 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

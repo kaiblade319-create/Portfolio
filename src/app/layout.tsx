@@ -6,21 +6,26 @@ import ConditionalNavbar from '@/components/conditional-navbar';
 
 import SecurityGuard from '@/components/security-guard';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:9002';
+const siteUrl = process.env.APP_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Kaushar Halani | Portfolio',
+    default: 'Kaushar Halani | Technical Project Coordinator & Systems Builder',
     template: '%s | Kaushar Halani',
   },
   description:
-    'Portfolio of Kaushar Halani featuring engineering, machine learning, and analytical projects with technical documentation.',
+    'Official portfolio of Kaushar Halani – Technical Project Coordinator & Systems Builder. Delivering AI-accelerated engineering, machine learning pipelines, and verified business outcomes.',
   keywords: [
     'Kaushar Halani',
-    'Portfolio',
-    'Machine Learning Projects',
+    'Technical Project Coordinator',
+    'Systems Builder',
+    'Blink Beyond',
+    'Machine Learning Portfolio',
     'Software Engineering',
+    'AI-Assisted Development',
+    'Data Science Engineer',
+    'Computer Science Portfolio',
     'Python',
     'Next.js Portfolio',
   ],
@@ -34,33 +39,31 @@ export const metadata: Metadata = {
     type: 'website',
     url: '/',
     siteName: 'Kaushar Halani Portfolio',
-    title: 'Kaushar Halani | Portfolio',
+    title: 'Kaushar Halani | Technical Project Coordinator & Systems Builder',
     description:
-      'Engineering and machine learning projects with clear problem statements, approach, and measurable outcomes.',
+      'Engineering and machine learning systems built with end-to-end ownership, root-cause diagnostics, and verifiable business impact.',
     images: [
       {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Kaushar Halani Portfolio',
+        alt: 'Kaushar Halani Portfolio – Systems Builder & Technical Coordinator',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kaushar Halani | Portfolio',
+    title: 'Kaushar Halani | Technical Project Coordinator & Systems Builder',
     description:
-      'Portfolio with ML and software projects focused on real-world outcomes.',
+      'Engineering and machine learning systems built with end-to-end ownership, root-cause diagnostics, and verifiable business impact.',
     images: ['/opengraph-image'],
   },
   robots: {
     index: true,
     follow: true,
-    noarchive: true,
     googleBot: {
       index: true,
       follow: true,
-      noarchive: true,
       'max-image-preview': 'large',
       'max-video-preview': -1,
       'max-snippet': -1,
@@ -78,9 +81,27 @@ export default function RootLayout({
     '@type': 'Person',
     name: 'Kaushar Halani',
     url: siteUrl,
-    jobTitle: 'Student & Developer',
+    jobTitle: 'Technical Project Coordinator & Systems Builder',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Blink Beyond',
+      location: 'Palghar, Maharashtra, India',
+    },
+    alumniOf: {
+      '@type': 'CollegeOrUniversity',
+      name: 'St. John College of Engineering and Management',
+    },
     description:
-      'Personal portfolio featuring engineering, machine learning, and software projects.',
+      'Technical Project Coordinator and Computer Science Engineer specializing in AI-accelerated workflows, predictive machine learning pipelines, and robust software delivery.',
+    knowsAbout: [
+      'Machine Learning',
+      'Data Pipelines',
+      'Predictive Modeling',
+      'AI-Assisted Software Engineering',
+      'Python',
+      'TypeScript',
+      'Project Management',
+    ],
   };
 
   return (

@@ -9,7 +9,6 @@ import Skills from '@/components/sections/skills';
 import Experience from '@/components/sections/experience';
 import Education from '@/components/sections/education';
 import Contact from '@/components/sections/contact';
-import { Separator } from '@/components/ui/separator';
 import { motion } from 'framer-motion';
 
 const sectionVariants = {
@@ -31,36 +30,40 @@ const MotionSection = ({ id, children }: { id: string; children: React.ReactNode
 );
 
 
+const SectionDivider = () => (
+  <div className="w-full max-w-5xl mx-auto h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+);
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-dvh bg-background">
       <main className="flex-1">
         <Hero />
         <div>
-        <Separator />
-        <MotionSection id="about">
-          <About />
-        </MotionSection>
-        <Separator />
-        <MotionSection id="projects">
-          <Projects />
-        </MotionSection>
-        <Separator />
-        <MotionSection id="experience">
-          <Experience />
-        </MotionSection>
-        <Separator />
-        <MotionSection id="skills">
-          <Skills />
-        </MotionSection>
-        <Separator />
-        <MotionSection id="education">
-          <Education />
-        </MotionSection>
-        <Separator />
-        <MotionSection id="contact">
-          <Contact />
-        </MotionSection>
+          <SectionDivider />
+          <MotionSection id="about">
+            <About />
+          </MotionSection>
+          <SectionDivider />
+          <MotionSection id="projects">
+            <Projects />
+          </MotionSection>
+          <SectionDivider />
+          <MotionSection id="experience">
+            <Experience />
+          </MotionSection>
+          <SectionDivider />
+          <MotionSection id="skills">
+            <Skills />
+          </MotionSection>
+          <SectionDivider />
+          <MotionSection id="education">
+            <Education />
+          </MotionSection>
+          <SectionDivider />
+          <MotionSection id="contact">
+            <Contact />
+          </MotionSection>
         </div>
       </main>
       <Footer />

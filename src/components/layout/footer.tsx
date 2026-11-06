@@ -66,17 +66,17 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="space-y-3 sm:col-span-1 md:col-span-2">
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+          <div className="space-y-2.5 sm:col-span-1 md:col-span-2">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-zinc-400 font-mono">
               Navigation
             </p>
             <nav aria-label="Footer navigation">
-              <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              <ul className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-1.5 sm:gap-y-2">
                 {footerNav.map((item) => (
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded"
+                      className="text-xs text-zinc-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/20 rounded py-0.5"
                     >
                       {item.name}
                     </Link>
