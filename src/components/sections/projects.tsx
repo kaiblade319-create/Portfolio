@@ -4,165 +4,388 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { projects } from '@/app/lib/data';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Github, ExternalLink, FileText, GraduationCap } from 'lucide-react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import React from 'react';
+import { Github, ExternalLink, BookOpen, ScrollText } from 'lucide-react';
+import { motion } from 'framer-motion';
+import {
+  SectionHeading,
+  SpotlightCard,
+  TiltShowcaseCard,
+} from '@/components/ui/motion-primitives';
+import { cn } from '@/lib/utils';
+import { getHeroFeaturedGridClass } from '@/lib/portfolio-utils';
 
 const Projects = () => {
   const [activeTab, setActiveTab] = useState('All');
 
   const projectFilters = ['All', 'Independent', 'Guided'];
 
-  const filteredProjects = activeTab === 'All'
-    ? projects
-    : projects.filter((project) => project.projectTrack === activeTab);
+  const filteredProjects =
+    activeTab === 'All'
+      ? projects
+      : projects.filter((project) => project.projectTrack === activeTab);
+
+  const layoutMode = getHeroFeaturedGridClass(filteredProjects.length);
 
   return (
-    <div className="py-14 sm:py-20 md:py-28">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-8 sm:mb-12 md:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold font-headline tracking-tight">
-            Projects
-          </h2>
-          <p className="mx-auto mt-2 sm:mt-3 max-w-2xl text-xs sm:text-base md:text-lg text-muted-foreground leading-relaxed">
-            Hands-on technical builds solving root bottlenecks, mitigating risks, and delivering verifiable business impact.
-          </p>
-        </div>
+    <div className="py-14 sm:py-16 md:py-20">
+      <div className="w-full max-w-5xl mx-auto px-4 sm:px-6">
+        <SectionHeading
+          kicker="Selected Work"
+          title="Featured Projects"
+          highlightWord="Projects"
+          subtitle="Hands-on data analytics and ML builds solving root bottlenecks, mitigating churn risk, and driving measurable business outcomes."
+        />
 
-        <div className="max-w-4xl mx-auto">
-          <Tabs defaultValue="All" onValueChange={setActiveTab} className="w-full">
-            <div className="flex justify-center mb-6 sm:mb-10">
-              <TabsList className="inline-flex items-center gap-1 sm:gap-1.5 p-1 bg-secondary/80 rounded-full h-auto border border-border">
-                {projectFilters.map((filter) => (
-                  <TabsTrigger
-                    key={filter}
-                    value={filter}
-                    className="px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm data-[state=inactive]:text-muted-foreground hover:text-foreground"
-                  >
-                    {filter === 'All' ? 'All Builds' : `${filter} Projects`}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </div>
-
-            <TabsContent value={activeTab}>
-              {filteredProjects.length === 0 ? (
-                <div className="text-center py-16 border border-dashed border-border rounded-2xl bg-card/40 max-w-xl mx-auto">
-                  <p className="text-muted-foreground text-sm">
-                    No {activeTab.toLowerCase()} projects added yet. More builds in progress!
-                  </p>
-                </div>
-              ) : (
-                <div className={filteredProjects.length === 1 ? "max-w-xl mx-auto" : "grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto"}>
-                  {filteredProjects.map((project) => (
-                    <Card
-                      key={project.id}
-                      className="group flex flex-col justify-between overflow-hidden border border-border/70 bg-card/75 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/45 hover:shadow-2xl hover:shadow-primary/10 rounded-2xl"
+        <div>
+          {/* Show interactive track filter only when multiple builds exist */}
+          {projects.length > 1 && (
+            <div className="flex justify-center mb-8 sm:mb-10">
+              <div
+                role="tablist"
+                aria-label="Project track filters"
+                className="inline-flex items-center gap-1 p-1 bg-[#0E0E12]/90 rounded-full border border-white/10 backdrop-blur-md"
+              >
+                {projectFilters.map((filter) => {
+                  const isSelected = activeTab === filter;
+                  return (
+                    <button
+                      key={filter}
+                      role="tab"
+                      aria-selected={isSelected}
+                      onClick={() => setActiveTab(filter)}
+                      className={cn(
+                        'relative px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 whitespace-nowrap shrink-0',
+                        isSelected ? 'font-semibold' : 'text-zinc-300 hover:text-white'
+                      )}
+                      style={isSelected ? { color: 'var(--accent-ink)' } : undefined}
                     >
-                      <CardHeader className="p-4 sm:p-5 pb-3 space-y-2.5">
-                        {/* Clean top badge only */}
-                        <div className="flex items-center">
-                          <Badge
-                            variant="outline"
-                            className={
-                              project.projectTrack === 'Independent'
-                                ? 'border-primary/40 bg-primary/10 text-primary text-xs font-mono uppercase tracking-wider px-2.5 py-0.5'
-                                : 'border-border/70 bg-secondary/80 text-foreground/90 text-xs font-mono uppercase tracking-wider px-2.5 py-0.5'
-                            }
-                          >
-                            {project.projectTrack === 'Independent' ? 'Independent Project' : 'Guided Project'}
-                          </Badge>
-                        </div>
+                      {isSelected && (
+                        <motion.span
+                          layoutId="projects-filter-pill"
+                          transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                          className="absolute inset-0 rounded-full -z-10"
+                          style={{
+                            backgroundColor: 'var(--accent-solid)',
+                            boxShadow: '0 2px 16px var(--accent-glow)',
+                          }}
+                        />
+                      )}
+                      <span className="relative z-10">
+                        {filter === 'All' ? 'All Builds' : `${filter} Projects`}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
-                        {/* Image with crisp 16:9 modern aspect ratio */}
-                        <div className="aspect-[16/9] relative w-full overflow-hidden rounded-xl border border-border/50 bg-muted">
-                          {project.imageUrl ? (
-                            <Image
-                              src={project.imageUrl}
-                              alt={project.title}
-                              fill
-                              sizes="(max-width: 768px) 100vw, 600px"
-                              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-                              data-ai-hint={project.imageHint}
-                              loading="lazy"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground text-xs font-mono tracking-widest">
-                              PROJECT PREVIEW
-                            </div>
-                          )}
-                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                        </div>
+          {filteredProjects.length === 0 ? (
+            <SpotlightCard className="text-center py-12 px-6 max-w-xl mx-auto">
+              <p className="text-zinc-300 text-sm sm:text-base mb-4">
+                No {activeTab.toLowerCase()} projects added yet. More builds in progress.
+              </p>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setActiveTab('All')}
+                className="rounded-xl border-white/15 bg-white/[0.05] hover:bg-white/[0.12] text-white text-xs sm:text-sm h-10 px-5"
+              >
+                Show All Builds
+              </Button>
+            </SpotlightCard>
+          ) : layoutMode === 'single' ? (
+            /* Aceternity 3D Tilt + BorderBeam Flagship Split Card */
+            filteredProjects.map((project) => (
+              <TiltShowcaseCard key={project.id} className="group overflow-hidden">
+                <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+                  {/* Left Architectural Diagram & Stack Column */}
+                  <div className="lg:col-span-7 p-5 sm:p-6 flex flex-col justify-between bg-white/[0.015] border-b lg:border-b-0 lg:border-r border-white/[0.08]">
+                    <div className="flex items-center justify-between gap-2 text-xs font-mono uppercase tracking-[0.14em] text-zinc-400 mb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="font-semibold" style={{ color: 'var(--accent-bright)' }}>
+                          {project.projectTrack === 'Independent'
+                            ? 'Independent Build'
+                            : 'Guided Build'}
+                        </span>
+                        <span aria-hidden="true" className="text-zinc-600">·</span>
+                        <span className="text-zinc-300">{project.category}</span>
+                      </div>
+                      <span className="text-[11px] font-semibold hidden sm:inline text-zinc-300">
+                        Flagship Case Study
+                      </span>
+                    </div>
 
-                        {/* Prominent title */}
-                        <CardTitle className="text-base sm:text-lg md:text-xl font-bold font-headline pt-1 group-hover:text-primary transition-colors leading-snug">
+                    <div className="aspect-[16/9] relative w-full overflow-hidden rounded-xl border border-white/10 bg-zinc-950">
+                      {project.imageUrl ? (
+                        <Image
+                          src={project.imageUrl}
+                          alt={project.title}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 620px"
+                          className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                          data-ai-hint={project.imageHint}
+                          referrerPolicy="no-referrer"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-zinc-950 text-zinc-500 text-xs font-mono tracking-widest">
                           {project.title}
-                        </CardTitle>
-                      </CardHeader>
+                        </div>
+                      )}
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-35" />
+                    </div>
 
-                      <CardContent className="px-4 sm:px-5 pb-4 space-y-3">
-                        <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
-                          {project.description}
-                        </p>
+                    <div className="pt-3.5 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-zinc-300">
+                      <span>{project.tool}</span>
+                      {project.caseStudy?.kpis?.[2] && (
+                        <span
+                          className="font-bold tabular-nums"
+                          style={{ color: 'var(--accent-bright)' }}
+                        >
+                          {project.caseStudy.kpis[2].value}
+                        </span>
+                      )}
+                    </div>
+                  </div>
 
-                        {/* Clean tech and problem-solving badges */}
-                        <div className="flex flex-wrap gap-1.5 pt-0.5">
-                          {project.projectTypes.map((type) => (
-                            <Badge
-                              key={type}
-                              variant="secondary"
-                              className="text-[10px] sm:text-xs px-2 py-0.5 bg-secondary text-muted-foreground font-normal border border-border/50"
-                            >
-                              {type}
-                            </Badge>
+                  {/* Right Details, Bold Highlights & CTA Column */}
+                  <div className="lg:col-span-5 p-6 sm:p-7 flex flex-col justify-between space-y-5">
+                    <div className="space-y-4">
+                      <h3 className="text-xl sm:text-2xl font-extrabold font-headline text-white leading-snug tracking-tight">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-zinc-300 text-[15px] leading-[1.7]">
+                        End-to-end ML pipeline engineered to{' '}
+                        <span className="text-underline-accent">
+                          diagnose silent churn root causes
+                        </span>
+                        , predict cancellations{' '}
+                        <strong className="text-white font-semibold">30 days early</strong>
+                        , and automate retention queues.
+                      </p>
+
+                      {/* Unboxed Hairline KPI Spec Strip */}
+                      {project.caseStudy?.kpis && (
+                        <div className="grid grid-cols-3 divide-x divide-white/10 border-y border-white/10 py-3">
+                          {project.caseStudy.kpis.map((kpi) => (
+                            <div key={kpi.label} className="px-2 first:pl-0 last:pr-0 text-center">
+                              <p
+                                className="text-lg sm:text-xl font-extrabold font-headline tabular-nums"
+                                style={{ color: 'var(--accent-bright)' }}
+                              >
+                                {kpi.value}
+                              </p>
+                              <p className="text-[10px] sm:text-[11px] font-mono text-zinc-400 leading-tight mt-0.5">
+                                {kpi.label}
+                              </p>
+                            </div>
                           ))}
                         </div>
-                      </CardContent>
+                      )}
 
-                      {/* Clean 2x2 button grid with Research Paper label */}
-                      <CardFooter className="px-4 sm:px-5 py-3 border-t border-border/60 bg-muted/20 mt-auto">
-                        <div className="grid grid-cols-2 gap-2 sm:gap-2.5 w-full">
+                      <p className="text-xs font-mono text-zinc-400">
+                        {project.projectTypes.join(' · ')}
+                      </p>
+                    </div>
+
+                    {(() => {
+                      const hasDistinctDemo = Boolean(project.link && project.link !== project.githubUrl);
+                      const actionCount =
+                        (project.githubUrl ? 1 : 0) +
+                        (hasDistinctDemo ? 1 : 0) +
+                        1 +
+                        (project.paperUrl ? 1 : 0);
+                      return (
+                        <div
+                          className={cn(
+                            'pt-2 grid gap-2.5 w-full',
+                            actionCount === 3 ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-2'
+                          )}
+                        >
                           {project.githubUrl && (
-                            <Button asChild variant="outline" size="default" className="w-full text-xs border-border/80 hover:border-primary/50 hover:bg-secondary h-9">
+                            <Button
+                              asChild
+                              variant="outline"
+                              size="default"
+                              className="w-full text-xs border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.1] text-white h-10 rounded-xl whitespace-nowrap shrink-0"
+                            >
                               <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                                 <Github className="mr-1.5 h-3.5 w-3.5" />
                                 Code
                               </Link>
                             </Button>
                           )}
-                          {project.link && (
-                            <Button asChild size="default" className="w-full text-xs shadow-md shadow-primary/20 h-9 bg-white text-zinc-950 hover:bg-zinc-200 font-semibold">
+                          {hasDistinctDemo && project.link && (
+                            <Button
+                              asChild
+                              size="default"
+                              className="btn-shimmer w-full text-xs h-10 rounded-xl font-semibold whitespace-nowrap shrink-0"
+                              style={{
+                                backgroundColor: 'var(--accent-solid)',
+                                color: 'var(--accent-ink)',
+                                boxShadow: '0 4px 22px -4px var(--accent-glow)',
+                              }}
+                            >
                               <Link href={project.link} target="_blank" rel="noopener noreferrer">
                                 <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
                                 Live Demo
                               </Link>
                             </Button>
                           )}
-                          <Button asChild variant="outline" size="default" className="w-full text-xs border-border/80 hover:border-primary/50 hover:bg-secondary h-9">
+                          <Button
+                            asChild
+                            size="default"
+                            className="btn-shimmer w-full text-xs h-10 rounded-xl font-semibold whitespace-nowrap shrink-0"
+                            style={{
+                              backgroundColor: 'var(--accent-solid)',
+                              color: 'var(--accent-ink)',
+                              boxShadow: '0 4px 22px -4px var(--accent-glow)',
+                            }}
+                          >
                             <Link href={project.docsPath} prefetch={true}>
-                              <FileText className="mr-1.5 h-3.5 w-3.5" />
+                              <BookOpen className="mr-1.5 h-3.5 w-3.5" />
                               Case Study
                             </Link>
                           </Button>
                           {project.paperUrl && (
-                            <Button asChild variant="outline" size="default" className="w-full text-xs border-border/80 hover:border-primary hover:text-primary hover:bg-secondary h-9">
+                            <Button
+                              asChild
+                              variant="outline"
+                              size="default"
+                              className="w-full text-xs border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.1] text-white h-10 rounded-xl whitespace-nowrap shrink-0"
+                            >
                               <Link href={project.paperUrl} target="_blank" rel="noopener noreferrer">
-                                <GraduationCap className="mr-1.5 h-3.5 w-3.5 text-primary" />
-                                Research Paper
+                                <ScrollText
+                                  className="mr-1.5 h-3.5 w-3.5"
+                                  style={{ color: 'var(--accent-bright)' }}
+                                />
+                                Paper
                               </Link>
                             </Button>
                           )}
                         </div>
-                      </CardFooter>
-                    </Card>
-                  ))}
+                      );
+                    })()}
+                  </div>
                 </div>
-              )}
-            </TabsContent>
-          </Tabs>
+              </TiltShowcaseCard>
+            ))
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              {filteredProjects.map((project) => (
+                <SpotlightCard
+                  key={project.id}
+                  className="group flex flex-col justify-between overflow-hidden hover:-translate-y-1"
+                >
+                  <div className="flex flex-col justify-between h-full">
+                    <div className="p-5 sm:p-6 pb-4 space-y-3.5">
+                      <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-zinc-400">
+                        <span className="font-semibold" style={{ color: 'var(--accent-bright)' }}>
+                          {project.projectTrack === 'Independent'
+                            ? 'Independent Build'
+                            : 'Guided Build'}
+                        </span>
+                        <span aria-hidden="true" className="text-zinc-600">·</span>
+                        <span className="text-zinc-300">{project.category}</span>
+                      </div>
+
+                      <div className="aspect-[16/9] relative w-full overflow-hidden rounded-xl border border-white/10 bg-zinc-950">
+                        {project.imageUrl ? (
+                          <Image
+                            src={project.imageUrl}
+                            alt={project.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 520px"
+                            className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                            data-ai-hint={project.imageHint}
+                            referrerPolicy="no-referrer"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-zinc-950 text-zinc-500 text-xs font-mono tracking-widest">
+                            {project.title}
+                          </div>
+                        )}
+                      </div>
+
+                      <h3 className="text-lg sm:text-xl font-bold font-headline pt-1 text-white leading-snug">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-zinc-300 text-sm leading-relaxed">
+                        {project.description}
+                      </p>
+
+                      <p className="text-xs font-mono text-zinc-400">
+                        {project.projectTypes.join(' · ')}
+                      </p>
+                    </div>
+
+                    <div className="px-5 sm:px-6 py-4 border-t border-white/[0.08] bg-white/[0.015] mt-auto">
+                      <div className="grid grid-cols-2 gap-2.5 w-full">
+                        {project.githubUrl && (
+                          <Button
+                            asChild
+                            variant="outline"
+                            size="default"
+                            className="w-full text-xs border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.1] text-white h-10 rounded-xl whitespace-nowrap shrink-0"
+                          >
+                            <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                              <Github className="mr-1.5 h-3.5 w-3.5" />
+                              Code
+                            </Link>
+                          </Button>
+                        )}
+                        {project.link && (
+                          <Button
+                            asChild
+                            size="default"
+                            className="btn-shimmer w-full text-xs h-10 rounded-xl font-semibold whitespace-nowrap shrink-0"
+                            style={{
+                              backgroundColor: 'var(--accent-solid)',
+                              color: 'var(--accent-ink)',
+                            }}
+                          >
+                            <Link href={project.link} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
+                              Live Demo
+                            </Link>
+                          </Button>
+                        )}
+                        <Button
+                          asChild
+                          variant="outline"
+                          size="default"
+                          className="w-full text-xs border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.1] text-white h-10 rounded-xl whitespace-nowrap shrink-0"
+                        >
+                          <Link href={project.docsPath} prefetch={true}>
+                            <BookOpen className="mr-1.5 h-3.5 w-3.5" style={{ color: 'var(--accent-bright)' }} />
+                            Case Study
+                          </Link>
+                        </Button>
+                        {project.paperUrl && (
+                          <Button
+                            asChild
+                            variant="outline"
+                            size="default"
+                            className="w-full text-xs border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.1] text-white h-10 rounded-xl whitespace-nowrap shrink-0"
+                          >
+                            <Link href={project.paperUrl} target="_blank" rel="noopener noreferrer">
+                              <ScrollText className="mr-1.5 h-3.5 w-3.5" style={{ color: 'var(--accent-bright)' }} />
+                              Paper
+                            </Link>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </SpotlightCard>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

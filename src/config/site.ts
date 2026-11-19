@@ -11,15 +11,15 @@ export const siteConfig = {
   initials: "KH",
 
   role: {
-    current: "High-Agency Problem Solver & Builder",
-    path: "Root-Cause Diagnostics · Rapid Adaptation · Systems Automation",
-    badge: "High-Agency Problem Solver · Systems Builder",
-    openTo: "Open to high-impact internships, entry-level roles, and technical generalist challenges",
+    current: "Data Analyst",
+    path: "SQL & Python Analytics · Root-Cause Diagnostics · BI Storytelling",
+    badge: "Data Analyst · Technical Coordinator",
+    openTo: "Open to Data Analyst, BI & Product Analytics internships and entry-level roles",
   },
 
-  tagline: "Solving Bottlenecks From the Root. Engineering Systems That Protect & Grow Business Value.",
+  tagline: "Turning raw data into clear decisions, early churn signals, and measurable growth.",
 
-  bio: "Adaptable builder combining business-first diagnostics with engineering execution. I solve root bottlenecks, master modern stacks rapidly, and build automated systems that eliminate losses and protect margins.",
+  bio: "Computer Science (Data Science) student & Technical Project Coordinator at Blink Beyond. Focused on SQL, Python analytics, dashboards, and root-cause business diagnostics.",
 
   /** ── Update these with your real URLs ── */
   links: {
@@ -31,19 +31,19 @@ export const siteConfig = {
     profile:   "/profile",
   },
 
-  /** ── Core Impact Pillars ── */
+  /** ── Core Proof Strip ── */
   stats: [
-    { value: "Root-Cause",   label: "Deep Diagnostics & Friction Removal" },
-    { value: "High-Agency",  label: "Fearless & Rapid Stack Mastery" },
-    { value: "Automated",    label: "Operational & Workflow Precision" },
-    { value: "Value-First",  label: "Measurable ROI & Client Impact" },
+    { value: "1",        label: "End-to-End Analytics Case Study" },
+    { value: "10",       label: "Downloadable CSV & XLSX Datasets" },
+    { value: "23+",      label: "Data, BI & ML Tools Applied" },
+    { value: "Palghar",  label: "Coordinator Lead · Blink Beyond" },
   ],
 
   /** ── SEO ── */
   seo: {
-    title: "Kaushar Halani — High-Agency Problem Solver & Builder",
+    title: "Kaushar Halani | Data Analyst Portfolio",
     description:
-      "Portfolio of Kaushar Halani. Diagnosing root causes, mastering modern stacks with fearless adaptability, and building automated systems that protect and grow business value.",
-    url: "https://kausharhalani.replit.app/",
+      "Portfolio of Kaushar Halani — Data Analyst & Technical Project Coordinator. SQL, Python analytics, predictive churn diagnostics, and decision-ready insights.",
+    url: "/",
   },
 } as const;

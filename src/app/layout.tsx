@@ -1,33 +1,48 @@
 import type { Metadata } from 'next';
+import { DM_Sans, JetBrains_Mono, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import ScrollToTopButton from '@/components/ui/scroll-to-top-button';
 import PreloaderWrapper from '@/components/preloader-wrapper';
 import ConditionalNavbar from '@/components/conditional-navbar';
-
 import SecurityGuard from '@/components/security-guard';
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-headline',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+});
 
 const siteUrl = process.env.APP_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Kaushar Halani | Technical Project Coordinator & Systems Builder',
+    default: 'Kaushar Halani | Data Analyst',
     template: '%s | Kaushar Halani',
   },
   description:
-    'Official portfolio of Kaushar Halani – Technical Project Coordinator & Systems Builder. Delivering AI-accelerated engineering, machine learning pipelines, and verified business outcomes.',
+    'Portfolio of Kaushar Halani — Data Analyst & Technical Project Coordinator. Turning raw data into SQL & Python insights, dashboards, and measurable business outcomes.',
   keywords: [
     'Kaushar Halani',
-    'Technical Project Coordinator',
-    'Systems Builder',
+    'Data Analyst',
+    'SQL Analytics',
+    'Python Data Analysis',
+    'Business Intelligence',
     'Blink Beyond',
-    'Machine Learning Portfolio',
-    'Software Engineering',
-    'AI-Assisted Development',
-    'Data Science Engineer',
-    'Computer Science Portfolio',
-    'Python',
-    'Next.js Portfolio',
+    'Customer Churn Analysis',
+    'Data Science Portfolio',
   ],
   alternates: {
     canonical: '/',
@@ -39,23 +54,23 @@ export const metadata: Metadata = {
     type: 'website',
     url: '/',
     siteName: 'Kaushar Halani Portfolio',
-    title: 'Kaushar Halani | Technical Project Coordinator & Systems Builder',
+    title: 'Kaushar Halani | Data Analyst',
     description:
-      'Engineering and machine learning systems built with end-to-end ownership, root-cause diagnostics, and verifiable business impact.',
+      'Data analytics projects, root-cause diagnostics, and decision-ready insights backed by Python, SQL, and operational coordination.',
     images: [
       {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Kaushar Halani Portfolio – Systems Builder & Technical Coordinator',
+        alt: 'Kaushar Halani — Data Analyst Portfolio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kaushar Halani | Technical Project Coordinator & Systems Builder',
+    title: 'Kaushar Halani | Data Analyst',
     description:
-      'Engineering and machine learning systems built with end-to-end ownership, root-cause diagnostics, and verifiable business impact.',
+      'Data analytics projects, root-cause diagnostics, and decision-ready insights backed by Python, SQL, and operational coordination.',
     images: ['/opengraph-image'],
   },
   robots: {
@@ -81,7 +96,7 @@ export default function RootLayout({
     '@type': 'Person',
     name: 'Kaushar Halani',
     url: siteUrl,
-    jobTitle: 'Technical Project Coordinator & Systems Builder',
+    jobTitle: 'Data Analyst & Technical Project Coordinator',
     worksFor: {
       '@type': 'Organization',
       name: 'Blink Beyond',
@@ -92,30 +107,31 @@ export default function RootLayout({
       name: 'St. John College of Engineering and Management',
     },
     description:
-      'Technical Project Coordinator and Computer Science Engineer specializing in AI-accelerated workflows, predictive machine learning pipelines, and robust software delivery.',
+      'Data Analyst and Computer Science (Data Science) student focused on SQL, Python analytics, predictive churn diagnostics, and stakeholder reporting.',
     knowsAbout: [
-      'Machine Learning',
-      'Data Pipelines',
-      'Predictive Modeling',
-      'AI-Assisted Software Engineering',
+      'Data Analysis',
+      'SQL',
       'Python',
-      'TypeScript',
-      'Project Management',
+      'Pandas',
+      'Data Visualization',
+      'Machine Learning',
+      'Project Coordination',
     ],
   };
 
   return (
-    <html lang="en" className="dark">
-      <body className="font-body antialiased select-none">
+    <html
+      lang="en"
+      className={`dark ${dmSans.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className="font-body antialiased bg-background text-foreground">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         <SecurityGuard />
         <ConditionalNavbar />
-        <PreloaderWrapper>
-          {children}
-        </PreloaderWrapper>
+        <PreloaderWrapper>{children}</PreloaderWrapper>
         <ScrollToTopButton />
       </body>
     </html>
