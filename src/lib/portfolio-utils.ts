@@ -100,3 +100,41 @@ export function computeSectionScrollTop(
   }
   return Math.max(0, Math.round(rectTop + scrollY - headerHeight));
 }
+
+export interface SiteUrlEnv {
+  APP_URL?: string;
+  NEXT_PUBLIC_SITE_URL?: string;
+  VERCEL_PROJECT_PRODUCTION_URL?: string;
+  VERCEL_URL?: string;
+  [key: string]: string | undefined;
+}
+
+export function resolveSiteUrl(env: SiteUrlEnv = process.env): string {
+  const candidates = [
+    env.APP_URL,
+    env.NEXT_PUBLIC_SITE_URL,
+    env.VERCEL_PROJECT_PRODUCTION_URL,
+    env.VERCEL_URL,
+  ];
+
+  for (const raw of candidates) {
+    const trimmed = raw?.trim();
+    if (!trimmed) continue;
+
+    const hasProtocol = /^https?:\/\//i.test(trimmed);
+    const isLocal = /^(localhost|127\.0\.0\.1)(:|\/|$)/i.test(trimmed);
+    const normalized = hasProtocol
+      ? trimmed
+      : `${isLocal ? 'http' : 'https'}://${trimmed}`;
+
+    try {
+      const parsed = new URL(normalized);
+      return parsed.origin;
+    } catch {
+      continue;
+    }
+  }
+
+  return 'http://localhost:3000';
+}
+

@@ -1,14 +1,17 @@
 import type { NextConfig } from 'next';
+import { PHASE_DEVELOPMENT_SERVER } from 'next/constants';
 
-const nextConfig: NextConfig = {
-  output: 'standalone',
-  devIndicators: false,
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+export default function nextConfig(phase: string): NextConfig {
+  return {
+    distDir: phase === PHASE_DEVELOPMENT_SERVER ? '.next-dev' : '.next',
+    output: 'standalone',
+    devIndicators: false,
+    typescript: {
+      ignoreBuildErrors: true,
+    },
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
   images: {
     remotePatterns: [
       {
@@ -30,7 +33,6 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
-  },
-};
-
-export default nextConfig;
+    },
+  };
+}

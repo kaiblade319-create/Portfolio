@@ -1,7 +1,8 @@
 import type { MetadataRoute } from 'next';
 import { projects } from '@/app/lib/data';
+import { resolveSiteUrl } from '@/lib/portfolio-utils';
 
-const siteUrl = process.env.APP_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+const siteUrl = resolveSiteUrl();
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const projectEntries: MetadataRoute.Sitemap = projects.map((project) => ({

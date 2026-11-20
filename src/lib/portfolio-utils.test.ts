@@ -6,6 +6,7 @@ import {
   getHeroFeaturedGridClass,
   getSkillsBentoSpanClass,
   computeSectionScrollTop,
+  resolveSiteUrl,
 } from './portfolio-utils';
 import { WARM_PAPER_THEME, DEFAULT_ACCENT, isValidAccent, resolveAccent } from './theme-config';
 
@@ -67,3 +68,24 @@ test('computeSectionScrollTop aligns sections right below fixed header and retur
   assert.equal(computeSectionScrollTop('about', 760, 0, 64), 696);
   assert.equal(computeSectionScrollTop('projects', 20, 0, 80), 0);
 });
+
+test('resolveSiteUrl handles Vercel domains, empty env strings, and explicit URLs safely', () => {
+  assert.equal(resolveSiteUrl({}), 'http://localhost:3000');
+  assert.equal(
+    resolveSiteUrl({ APP_URL: '', NEXT_PUBLIC_SITE_URL: '   ', VERCEL_PROJECT_PRODUCTION_URL: 'kaushar.vercel.app' }),
+    'https://kaushar.vercel.app'
+  );
+  assert.equal(
+    resolveSiteUrl({ VERCEL_URL: 'kaushar-preview.vercel.app' }),
+    'https://kaushar-preview.vercel.app'
+  );
+  assert.equal(
+    resolveSiteUrl({ NEXT_PUBLIC_SITE_URL: 'https://kausharhalani.com/' }),
+    'https://kausharhalani.com'
+  );
+  assert.equal(
+    resolveSiteUrl({ APP_URL: 'not a valid url', NEXT_PUBLIC_SITE_URL: 'https://kaushar.dev/path' }),
+    'https://kaushar.dev'
+  );
+});
+

@@ -8,6 +8,7 @@ import './globals.css';
 import ScrollToTopButton from '@/components/ui/scroll-to-top-button';
 import ConditionalNavbar from '@/components/conditional-navbar';
 import SecurityGuard from '@/components/security-guard';
+import { resolveSiteUrl } from '@/lib/portfolio-utils';
 
 const atkinsonNext = Atkinson_Hyperlegible_Next({
   subsets: ['latin'],
@@ -28,7 +29,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
-const siteUrl = process.env.APP_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+const siteUrl = resolveSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
