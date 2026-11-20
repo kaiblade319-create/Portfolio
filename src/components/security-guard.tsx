@@ -6,7 +6,7 @@ export default function SecurityGuard() {
   useEffect(() => {
     console.log(
       '%cKaushar Halani — Portfolio & Case Studies',
-      'color: #FF8243; font-weight: bold; font-size: 13px;'
+      'color: #2B6E73; font-weight: bold; font-size: 13px;'
     );
   }, []);
 

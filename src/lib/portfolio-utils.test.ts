@@ -5,8 +5,9 @@ import {
   isPlaceholderExternalUrl,
   getHeroFeaturedGridClass,
   getSkillsBentoSpanClass,
+  computeSectionScrollTop,
 } from './portfolio-utils';
-import { SIGNAL_ORANGE_THEME, DEFAULT_ACCENT, isValidAccent, resolveAccent } from './theme-config';
+import { WARM_PAPER_THEME, DEFAULT_ACCENT, isValidAccent, resolveAccent } from './theme-config';
 
 const PORTFOLIO_TOOLS = [
   'Python', 'R', 'Java', 'SQL', 'TypeScript',
@@ -50,12 +51,19 @@ test('getSkillsBentoSpanClass prevents orphan cards on mobile (2-col) and tablet
   assert.equal(getSkillsBentoSpanClass(4, 5), 'col-span-2 sm:col-span-3 lg:col-span-1');
 });
 
-test('locked Signal Orange theme resolver defaults cleanly', () => {
-  assert.equal(DEFAULT_ACCENT, 'orange');
-  assert.equal(resolveAccent(null), 'orange');
-  assert.equal(resolveAccent('blue'), 'orange');
-  assert.equal(resolveAccent('green'), 'orange');
-  assert.equal(isValidAccent('orange'), true);
-  assert.equal(isValidAccent('blue'), false);
-  assert.equal(SIGNAL_ORANGE_THEME.swatchHex, '#FF5E1A');
+test('locked Warm Cream Paper theme resolver defaults cleanly', () => {
+  assert.equal(DEFAULT_ACCENT, 'sage');
+  assert.equal(resolveAccent(null), 'sage');
+  assert.equal(resolveAccent('orange'), 'sage');
+  assert.equal(resolveAccent('slate'), 'sage');
+  assert.equal(isValidAccent('sage'), true);
+  assert.equal(isValidAccent('orange'), false);
+  assert.equal(WARM_PAPER_THEME.swatchHex, '#2B6E73');
+});
+
+test('computeSectionScrollTop aligns sections right below fixed header and returns 0 for home', () => {
+  assert.equal(computeSectionScrollTop('home', 120, 400, 80), 0);
+  assert.equal(computeSectionScrollTop('about', 760, 0, 80), 680);
+  assert.equal(computeSectionScrollTop('about', 760, 0, 64), 696);
+  assert.equal(computeSectionScrollTop('projects', 20, 0, 80), 0);
 });

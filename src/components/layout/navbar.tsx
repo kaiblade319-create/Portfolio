@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { computeSectionScrollTop } from '@/lib/portfolio-utils';
 
 const navItems = [
   { name: 'Home', href: '/#home' },
@@ -20,11 +21,13 @@ const navItems = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showBrandName, setShowBrandName] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const pathname = usePathname();
 
   const handleScroll = useCallback(() => {
     setScrolled(window.scrollY > 20);
+    setShowBrandName(window.scrollY > 240);
 
     const isAtBottom =
       window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 48;
@@ -33,7 +36,9 @@ export default function Navbar() {
       return;
     }
 
-    const scrollPosition = window.scrollY + 120;
+    const headerHeight =
+      document.querySelector('header')?.getBoundingClientRect().height ?? 80;
+    const scrollPosition = window.scrollY + headerHeight + 24;
     let currentSectionId = '';
 
     for (let i = navItems.length - 1; i >= 0; i--) {
@@ -60,35 +65,73 @@ export default function Navbar() {
     if (pathname === '/') {
       window.addEventListener('scroll', handleScroll, { passive: true });
       handleScroll();
-      setActiveSection('home');
-    } else {
-      setActiveSection(pathname);
+      const rafId = window.requestAnimationFrame(() => handleScroll());
+      return () => {
+        window.cancelAnimationFrame(rafId);
+        window.removeEventListener('scroll', handleScroll);
+      };
     }
 
-    return () => {
-      if (pathname === '/') {
-        window.removeEventListener('scroll', handleScroll);
+    setActiveSection(pathname);
+    return undefined;
+  }, [pathname, handleScroll]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
       }
     };
-  }, [pathname, handleScroll]);
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('/#')) {
       e.preventDefault();
       const sectionId = href.replace('/#', '');
       const element = document.getElementById(sectionId);
-      if (element) {
-        const offset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
+      const wasOpen = isOpen;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
-        });
+      if (wasOpen) {
+        document.body.style.overflow = '';
       }
       setIsOpen(false);
       setActiveSection(sectionId);
+
+      if (element) {
+        const performScroll = () => {
+          const headerHeight =
+            document.querySelector('header')?.getBoundingClientRect().height ?? 81;
+          const targetTop = computeSectionScrollTop(
+            sectionId,
+            element.getBoundingClientRect().top,
+            window.scrollY,
+            headerHeight
+          );
+
+          window.scrollTo({
+            top: targetTop,
+            behavior: 'smooth',
+          });
+          window.history.replaceState(null, '', href);
+        };
+
+        if (wasOpen) {
+          window.requestAnimationFrame(performScroll);
+        } else {
+          performScroll();
+        }
+      }
     }
   };
 
@@ -107,39 +150,48 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300',
         scrolled || isOpen
-          ? 'bg-[#050507]/90 backdrop-blur-xl border-b border-white/[0.09] shadow-[0_12px_40px_-15px_rgba(0,0,0,0.9)]'
-          : 'bg-transparent'
+          ? 'bg-background/92 backdrop-blur-xl border-border shadow-[0_8px_24px_-12px_rgba(35,39,36,0.14)]'
+          : 'bg-transparent border-transparent'
       )}
     >
       <nav className="w-full max-w-5xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between gap-6 h-16 md:h-20">
-          {/* Brand Identity */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0 group whitespace-nowrap" aria-label="Kaushar Halani Home">
+          {/* Brand Identity (Monogram on Hero, Full Name once scrolled past Hero) */}
+          <Link href="/" className="flex items-center shrink-0 group whitespace-nowrap" aria-label="Kaushar Halani Home">
             <div
-              className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl border border-white/15 bg-white/[0.04] flex items-center justify-center font-mono font-bold text-xs sm:text-sm backdrop-blur-md transition-all duration-200 group-hover:scale-[1.03]"
+              className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl border border-border bg-card flex items-center justify-center font-mono font-bold text-xs sm:text-sm shadow-sm transition-all duration-200 group-hover:scale-[1.03] group-hover:border-[#2B6E73]/40"
               style={{ color: 'var(--accent-bright)' }}
             >
               KH
             </div>
-            <span className="text-sm sm:text-base font-bold font-headline tracking-tight text-white whitespace-nowrap">
+            <span
+              aria-hidden={!(showBrandName || isOpen)}
+              className={cn(
+                'text-sm sm:text-base font-bold font-headline tracking-tight text-foreground whitespace-nowrap overflow-hidden transition-all duration-300',
+                showBrandName || isOpen
+                  ? 'ml-2.5 opacity-100 max-w-[160px] translate-x-0'
+                  : 'ml-0 opacity-0 max-w-0 -translate-x-1 pointer-events-none'
+              )}
+            >
               Kaushar Halani
             </span>
           </Link>
 
           {/* Desktop Navigation - Spring Floating Active Segmented Bar */}
-          <div className="hidden lg:flex items-center gap-1 p-1 bg-[#0D0D11]/90 backdrop-blur-xl rounded-full border border-white/[0.1]">
+          <div className="hidden lg:flex items-center gap-1 p-1 bg-card/95 backdrop-blur-xl rounded-full border border-border shadow-sm">
             {navItems.map((item) => {
               const active = isActive(item.href);
               return (
                 <Link
                   key={item.name}
                   href={item.href}
+                  scroll={false}
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={cn(
                     'relative px-3.5 xl:px-4 py-1.5 xl:py-2 rounded-full text-xs xl:text-sm font-medium transition-colors duration-200 whitespace-nowrap shrink-0',
-                    active ? 'font-semibold' : 'text-zinc-300 hover:text-white'
+                    active ? 'font-semibold' : 'text-[#3D433E] hover:text-foreground'
                   )}
                   style={active ? { color: 'var(--accent-ink)' } : undefined}
                 >
@@ -150,7 +202,6 @@ export default function Navbar() {
                       className="absolute inset-0 rounded-full -z-10"
                       style={{
                         backgroundColor: 'var(--accent-solid)',
-                        boxShadow: '0 2px 18px var(--accent-glow)',
                       }}
                     />
                   )}
@@ -163,9 +214,12 @@ export default function Navbar() {
           {/* Mobile & Tablet Menu Button */}
           <div className="lg:hidden relative z-50 shrink-0">
             <button
-              className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl border border-white/15 bg-white/[0.04] backdrop-blur-md text-white hover:border-white/30 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+              type="button"
+              className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl border border-border bg-card text-foreground hover:border-[#2B6E73]/40 hover:bg-secondary/70 shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
+              aria-expanded={isOpen}
+              aria-controls="mobile-nav-drawer"
             >
               {isOpen ? (
                 <X className="h-5 w-5" style={{ color: 'var(--accent-bright)' }} />
@@ -187,15 +241,16 @@ export default function Navbar() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setIsOpen(false)}
-              className="lg:hidden fixed inset-0 top-16 md:top-20 bg-black/80 backdrop-blur-md -z-10"
+              className="lg:hidden fixed inset-0 top-16 md:top-20 bg-[#232724]/35 backdrop-blur-sm -z-10"
             />
 
             <motion.div
+              id="mobile-nav-drawer"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:hidden absolute top-full left-0 right-0 bg-[#050507]/95 backdrop-blur-2xl border-b border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.95)] overflow-hidden"
+              className="lg:hidden absolute top-full left-0 right-0 bg-card border-b border-border shadow-[0_18px_40px_-15px_rgba(35,39,36,0.20)] overflow-hidden"
             >
               <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-3 space-y-1.5">
                 {navItems.map((item) => {
@@ -204,12 +259,13 @@ export default function Navbar() {
                     <Link
                       key={item.name}
                       href={item.href}
+                      scroll={false}
                       onClick={(e) => handleNavClick(e, item.href)}
                       className={cn(
                         'flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 border',
                         active
                           ? 'font-semibold shadow-sm border-transparent'
-                          : 'text-zinc-200 border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.07] hover:text-white'
+                          : 'text-[#3D433E] border-border bg-background/70 hover:bg-secondary hover:text-foreground'
                       )}
                       style={
                         active

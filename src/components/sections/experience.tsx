@@ -39,13 +39,13 @@ const Experience = () => {
           {/* Track & Scroll-Linked Animated Beam centered cleanly in column gap */}
           <div
             aria-hidden="true"
-            className="absolute left-[10px] md:left-[14.75rem] lg:left-[18rem] md:-translate-x-1/2 top-3 bottom-3 w-[2px] bg-white/[0.08] overflow-hidden rounded-full"
+            className="absolute left-[10px] md:left-[14.75rem] lg:left-[18rem] md:-translate-x-1/2 top-3 bottom-3 w-[2px] bg-border overflow-hidden rounded-full"
           >
             <motion.div
               style={{
                 scaleY: smoothProgress,
                 background:
-                  'linear-gradient(180deg, var(--accent-solid), var(--accent-bright), rgba(255,255,255,0.8))',
+                  'linear-gradient(180deg, var(--accent-solid), var(--accent-bright), rgba(123,148,134,0.65))',
               }}
               className="h-full w-full origin-top"
             />
@@ -61,12 +61,12 @@ const Experience = () => {
                 <div
                   aria-hidden="true"
                   className={cn(
-                    'absolute left-[1px] md:left-[14.75rem] lg:left-[18rem] md:-translate-x-1/2 top-2 md:top-3 flex h-5 w-5 items-center justify-center rounded-full border bg-[#050507] z-10',
-                    exp.isCurrent ? 'border-white/50' : 'border-white/20'
+                    'absolute left-[1px] md:left-[14.75rem] lg:left-[18rem] md:-translate-x-1/2 top-2 md:top-3 flex h-5 w-5 items-center justify-center rounded-full border bg-background z-10',
+                    exp.isCurrent ? 'border-[#2B6E73]' : 'border-border'
                   )}
                   style={
                     exp.isCurrent
-                      ? { boxShadow: '0 0 18px var(--accent-glow)', borderColor: 'var(--accent-bright)' }
+                      ? { boxShadow: '0 0 10px rgba(43, 110, 115, 0.22)', borderColor: 'var(--accent-bright)' }
                       : undefined
                   }
                 >
@@ -75,7 +75,7 @@ const Experience = () => {
                     style={{
                       backgroundColor: exp.isCurrent
                         ? 'var(--accent-bright)'
-                        : 'rgba(255,255,255,0.4)',
+                        : 'rgba(93, 101, 94, 0.45)',
                     }}
                   />
                 </div>
@@ -91,13 +91,13 @@ const Experience = () => {
                         Current Role
                       </p>
                     )}
-                    <p className="text-lg sm:text-xl font-extrabold font-headline text-white leading-tight">
+                    <p className="text-lg sm:text-xl font-extrabold font-headline text-foreground leading-tight">
                       {exp.company}
                     </p>
-                    <p className="text-xs sm:text-[13px] font-mono text-zinc-300 tabular-nums">
+                    <p className="text-xs sm:text-[13px] font-mono text-[#3D433E] tabular-nums">
                       {exp.period}
                     </p>
-                    <p className="text-xs font-mono text-zinc-400">
+                    <p className="text-xs font-mono text-muted-foreground">
                       {[exp.mode, exp.type].filter(Boolean).join(' · ')}
                     </p>
                   </div>
@@ -114,8 +114,8 @@ const Experience = () => {
                     <AccordionItem value={`item-${exp.id}`} className="border-none">
                       <SpotlightCard className="overflow-hidden">
                         <div className="p-5 sm:p-6 space-y-3.5">
-                          <div className="space-y-1.5 pb-3 border-b border-white/[0.08]">
-                            <h3 className="text-xl sm:text-2xl font-extrabold font-headline leading-snug text-white tracking-tight">
+                          <div className="space-y-1.5 pb-3 border-b border-border">
+                            <h3 className="text-xl sm:text-2xl font-extrabold font-headline leading-snug text-foreground tracking-tight">
                               {exp.role}
                             </h3>
                             {exp.mentor && (
@@ -132,7 +132,7 @@ const Experience = () => {
                             )}
                           </div>
 
-                          <p className="text-sm sm:text-[15px] text-zinc-300 leading-[1.68] max-w-[65ch]">
+                          <p className="text-base text-[#3D433E] leading-[1.68] max-w-[65ch]">
                             {exp.description}
                           </p>
 
@@ -144,9 +144,9 @@ const Experience = () => {
                           </AccordionTrigger>
                         </div>
 
-                        <AccordionContent className="px-5 sm:px-6 pb-6 pt-0 border-t border-white/[0.08] mt-1 space-y-4">
+                        <AccordionContent className="px-5 sm:px-6 pb-6 pt-0 border-t border-border mt-1 space-y-4">
                           <div className="pt-4">
-                            <h4 className="font-bold text-xs text-white uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+                            <h4 className="font-bold text-xs text-foreground uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
                               <Briefcase
                                 className="h-3.5 w-3.5"
                                 style={{ color: 'var(--accent-bright)' }}
@@ -157,7 +157,7 @@ const Experience = () => {
                               {exp.responsibilities.map((resp, i) => (
                                 <li
                                   key={i}
-                                  className="flex items-start gap-2.5 text-sm text-zinc-300 leading-relaxed"
+                                  className="flex items-start gap-2.5 text-sm text-[#3D433E] leading-relaxed"
                                 >
                                   <CheckCircle2
                                     className="h-4 w-4 shrink-0 mt-0.5"
@@ -169,8 +169,8 @@ const Experience = () => {
                             </ul>
                           </div>
 
-                          <div className="border-t border-white/[0.08] pt-4">
-                            <h4 className="font-bold text-xs text-white uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                          <div className="border-t border-border pt-4">
+                            <h4 className="font-bold text-xs text-foreground uppercase tracking-wider mb-2 flex items-center gap-1.5">
                               <Award
                                 className="h-3.5 w-3.5"
                                 style={{ color: 'var(--accent-bright)' }}
@@ -181,7 +181,7 @@ const Experience = () => {
                               {exp.achievements.map((ach, i) => (
                                 <li
                                   key={i}
-                                  className="flex items-start gap-2.5 text-sm text-zinc-100 leading-relaxed font-medium"
+                                  className="flex items-start gap-2.5 text-sm text-foreground leading-relaxed font-medium"
                                 >
                                   <span
                                     aria-hidden="true"

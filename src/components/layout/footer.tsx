@@ -26,31 +26,31 @@ const Footer = () => {
   ].filter((item) => !isPlaceholderExternalUrl(item.href));
 
   return (
-    <footer className="relative border-t border-white/[0.09] bg-[#050507] text-zinc-300" aria-label="Site footer">
+    <footer className="relative border-t border-border bg-card/70 text-[#3D433E]" aria-label="Site footer">
       <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8 pb-8 border-b border-white/[0.08]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8 pb-8 border-b border-border">
           {/* Brand Summary */}
           <div className="sm:col-span-2 md:col-span-6 space-y-4">
             <div className="space-y-1">
-              <p className="text-lg font-bold font-headline text-white">{siteConfig.name}</p>
+              <p className="text-lg font-bold font-headline text-foreground">{siteConfig.name}</p>
               <p className="text-xs font-mono uppercase tracking-wider" style={{ color: 'var(--accent-bright)' }}>
                 {siteConfig.role.badge}
               </p>
             </div>
-            <p className="text-sm text-zinc-400 leading-relaxed max-w-md">
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
               {siteConfig.bio}
             </p>
             <div className="flex flex-wrap items-center gap-2.5 pt-1">
               <Link
                 href="/resume"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-white border border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.09] px-3.5 py-2 rounded-lg transition-colors whitespace-nowrap"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground border border-border bg-background hover:border-[#2B6E73]/40 hover:bg-secondary px-3.5 py-2 rounded-lg transition-colors whitespace-nowrap"
               >
                 <FileText className="h-3.5 w-3.5" style={{ color: 'var(--accent-bright)' }} />
                 Resume
               </Link>
               <Link
                 href="/profile"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-white border border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.09] px-3.5 py-2 rounded-lg transition-colors whitespace-nowrap"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground border border-border bg-background hover:border-[#2B6E73]/40 hover:bg-secondary px-3.5 py-2 rounded-lg transition-colors whitespace-nowrap"
               >
                 <User className="h-3.5 w-3.5" style={{ color: 'var(--accent-bright)' }} />
                 Profiles
@@ -69,7 +69,7 @@ const Footer = () => {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-zinc-400 hover:text-white transition-colors"
+                      className="text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {item.name}
                     </Link>
@@ -85,14 +85,14 @@ const Footer = () => {
               <p className="text-xs font-mono uppercase tracking-widest" style={{ color: 'var(--accent-bright)' }}>
                 Availability
               </p>
-              <div className="space-y-2 text-xs text-zinc-400">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 <p className="flex items-start gap-2 leading-relaxed">
                   <MapPin className="h-3.5 w-3.5 shrink-0 mt-0.5" style={{ color: 'var(--accent-bright)' }} />
                   <span>Palghar · Onsite, Hybrid &amp; Remote</span>
                 </p>
                 <Link
                   href="/#contact"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-200 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-[#3D433E] hover:text-foreground transition-colors"
                 >
                   <Mail className="h-3.5 w-3.5" style={{ color: 'var(--accent-bright)' }} />
                   <span>Send an inquiry</span>
@@ -115,7 +115,7 @@ const Footer = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={item.name}
-                        className="h-9 w-9 rounded-lg border border-white/15 bg-white/[0.04] flex items-center justify-center text-zinc-300 hover:border-white/30 hover:text-white transition-colors"
+                        className="h-9 w-9 rounded-lg border border-border bg-background flex items-center justify-center text-[#3D433E] hover:border-[#2B6E73]/40 hover:text-foreground hover:bg-secondary transition-colors"
                       >
                         <Icon className="h-4 w-4" />
                       </Link>
@@ -127,9 +127,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-zinc-500">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
           <p className="tabular-nums">&copy; {year} {siteConfig.name}. All rights reserved.</p>
-          <p className="font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
             Personal Portfolio
           </p>
         </div>

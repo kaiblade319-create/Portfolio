@@ -10,6 +10,7 @@ import {
   Rocket,
 } from 'lucide-react';
 import { SectionHeading, SpotlightCard } from '@/components/ui/motion-primitives';
+import { computeSectionScrollTop } from '@/lib/portfolio-utils';
 
 const operatingPrinciples = [
   {
@@ -47,11 +48,16 @@ const About = () => {
     e.preventDefault();
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      const headerHeight =
+        document.querySelector('header')?.getBoundingClientRect().height ?? 80;
+      const targetTop = computeSectionScrollTop(
+        sectionId,
+        element.getBoundingClientRect().top,
+        window.scrollY,
+        headerHeight
+      );
       window.scrollTo({
-        top: offsetPosition,
+        top: targetTop,
         behavior: 'smooth',
       });
     }
@@ -73,32 +79,32 @@ const About = () => {
             <SpotlightCard className="w-full">
               <div className="p-6 sm:p-8 flex flex-col justify-between h-full space-y-6">
                 <div className="space-y-4 sm:space-y-5">
-                  <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+                  <div className="flex items-center justify-between pb-3 border-b border-border">
                     <span
                       className="text-xs font-mono font-semibold uppercase tracking-[0.16em]"
                       style={{ color: 'var(--accent-bright)' }}
                     >
                       Analytical Profile
                     </span>
-                    <span className="text-xs font-mono text-zinc-400">CSE · Data Science</span>
+                    <span className="text-xs font-mono text-muted-foreground">CSE · Data Science</span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-extrabold font-headline text-white leading-tight tracking-tight">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold font-headline text-foreground leading-tight tracking-tight">
                     From Raw Data to{' '}
                     <span className="text-underline-accent">Clear Action</span>
                   </h3>
 
-                  <p className="max-w-[65ch] text-zinc-300 leading-[1.75] text-[15px] sm:text-base">
+                  <p className="max-w-[65ch] text-[#3D433E] leading-[1.75] text-base">
                     I am a Computer Science (Data Science) student who focuses on{' '}
-                    <strong className="text-white font-semibold">
+                    <strong className="text-foreground font-semibold">
                       cleaning messy data, spotting hidden patterns, and diagnosing root causes
                     </strong>
                     —not just building charts that sit untouched.
                   </p>
 
-                  <p className="max-w-[65ch] text-zinc-300 leading-[1.75] text-[15px] sm:text-base">
+                  <p className="max-w-[65ch] text-[#3D433E] leading-[1.75] text-base">
                     Through hands-on ML pipelines and client coordination at{' '}
-                    <strong className="text-white font-semibold">Blink Beyond</strong>, I bridge
+                    <strong className="text-foreground font-semibold">Blink Beyond</strong>, I bridge
                     technical analysis and stakeholder communication so every dashboard or model
                     leads to measurable retention, efficiency, or revenue protection.
                   </p>
@@ -113,7 +119,7 @@ const About = () => {
                     style={{
                       backgroundColor: 'var(--accent-solid)',
                       color: 'var(--accent-ink)',
-                      boxShadow: '0 4px 24px -4px var(--accent-glow)',
+                      boxShadow: '0 6px 18px -6px rgba(43, 110, 115, 0.35)',
                     }}
                   >
                     <Folder className="mr-2 h-4 w-4" />
@@ -123,7 +129,7 @@ const About = () => {
                     onClick={(e) => handleScrollTo(e, 'contact')}
                     variant="outline"
                     size="default"
-                    className="border-white/15 bg-white/[0.04] hover:bg-white/[0.09] hover:border-white/30 text-white font-medium text-xs sm:text-sm h-11 px-5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 cursor-pointer whitespace-nowrap shrink-0"
+                    className="border-border bg-background hover:bg-secondary hover:border-[#2B6E73]/40 text-foreground font-medium text-xs sm:text-sm h-11 px-5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 cursor-pointer whitespace-nowrap shrink-0"
                   >
                     <Mail className="mr-2 h-4 w-4" style={{ color: 'var(--accent-bright)' }} />
                     Get in Touch
@@ -137,19 +143,19 @@ const About = () => {
           <div className="lg:col-span-5 flex">
             <SpotlightCard className="w-full">
               <div className="p-6 sm:p-7 h-full flex flex-col justify-between space-y-5">
-                <div className="pb-3 border-b border-white/[0.08] flex items-center justify-between">
+                <div className="pb-3 border-b border-border flex items-center justify-between">
                   <p
                     className="text-xs font-mono font-semibold uppercase tracking-[0.16em]"
                     style={{ color: 'var(--accent-bright)' }}
                   >
                     How I Work
                   </p>
-                  <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest tabular-nums">
+                  <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest tabular-nums">
                     4 Principles
                   </span>
                 </div>
 
-                <div className="divide-y divide-white/[0.08] flex-1 flex flex-col justify-between">
+                <div className="divide-y divide-border flex-1 flex flex-col justify-between">
                   {operatingPrinciples.map((item) => {
                     const Icon = item.icon;
                     return (
@@ -157,19 +163,19 @@ const About = () => {
                         key={item.title}
                         className="flex items-start gap-3.5 py-3.5 first:pt-0 last:pb-0 group"
                       >
-                        <div className="p-2.5 rounded-xl border border-white/10 bg-white/[0.04] mt-0.5 shrink-0 transition-transform duration-200 group-hover:scale-105">
+                        <div className="p-2.5 rounded-xl border border-border bg-secondary/70 mt-0.5 shrink-0 transition-transform duration-200 group-hover:scale-105">
                           <Icon className="h-4 w-4" style={{ color: 'var(--accent-bright)' }} />
                         </div>
                         <div className="space-y-1">
-                          <div className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400">
+                          <div className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-muted-foreground">
                             <span style={{ color: 'var(--accent-bright)' }}>{item.index}</span>
                             <span aria-hidden="true">·</span>
                             <span>{item.title}</span>
                           </div>
-                          <p className="text-base font-bold text-white leading-snug">
+                          <p className="text-base font-bold text-foreground leading-snug">
                             {item.detail}
                           </p>
-                          <p className="text-xs sm:text-[13px] text-zinc-300 leading-relaxed">
+                          <p className="text-xs sm:text-[13px] text-[#3D433E] leading-relaxed">
                             {item.desc}
                           </p>
                         </div>

@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
     <linearGradient id="khGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#7BFAFF" />
-      <stop offset="100%" stop-color="#38BDF8" />
+      <stop offset="0%" stop-color="#2B6E73" />
+      <stop offset="100%" stop-color="#235B60" />
     </linearGradient>
   </defs>
-  <rect width="100" height="100" rx="24" fill="#000000" />
-  <rect x="2" y="2" width="96" height="96" rx="22" fill="none" stroke="#7BFAFF" stroke-width="2.5" stroke-opacity="0.4" />
-  <text x="50" y="63" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="44" font-weight="bold" fill="url(#khGradient)" text-anchor="middle">KH</text>
+  <rect width="100" height="100" rx="24" fill="#FAF7F0" />
+  <rect x="2" y="2" width="96" height="96" rx="22" fill="none" stroke="#DDD6C8" stroke-width="3" />
+  <text x="50" y="63" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-size="44" font-weight="bold" fill="url(#khGradient)" text-anchor="middle">KH</text>
 </svg>

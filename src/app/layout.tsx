@@ -1,15 +1,19 @@
 import type { Metadata } from 'next';
-import { DM_Sans, JetBrains_Mono, Plus_Jakarta_Sans } from 'next/font/google';
+import {
+  Atkinson_Hyperlegible_Next,
+  JetBrains_Mono,
+  Plus_Jakarta_Sans,
+} from 'next/font/google';
 import './globals.css';
 import ScrollToTopButton from '@/components/ui/scroll-to-top-button';
-import PreloaderWrapper from '@/components/preloader-wrapper';
 import ConditionalNavbar from '@/components/conditional-navbar';
 import SecurityGuard from '@/components/security-guard';
 
-const dmSans = DM_Sans({
+const atkinsonNext = Atkinson_Hyperlegible_Next({
   subsets: ['latin'],
   variable: '--font-body',
   display: 'swap',
+  adjustFontFallback: false,
 });
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -122,7 +126,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${dmSans.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}
+      className={`${atkinsonNext.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}
     >
       <body className="font-body antialiased bg-background text-foreground">
         <script
@@ -131,7 +135,7 @@ export default function RootLayout({
         />
         <SecurityGuard />
         <ConditionalNavbar />
-        <PreloaderWrapper>{children}</PreloaderWrapper>
+        {children}
         <ScrollToTopButton />
       </body>
     </html>

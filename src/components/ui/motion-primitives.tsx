@@ -28,15 +28,15 @@ export function ScrollProgressBar() {
       style={{
         scaleX,
         background:
-          'linear-gradient(90deg, var(--accent-solid), var(--accent-bright), #FFFFFF)',
+          'linear-gradient(90deg, var(--accent-solid), var(--accent-bright), #7B9486)',
       }}
-      className="fixed top-0 left-0 right-0 h-[2.5px] origin-left z-[60] pointer-events-none"
+      className="fixed top-0 left-0 right-0 h-[2px] origin-left z-[60] pointer-events-none"
     />
   );
 }
 
 /**
- * High-contrast Pointer-Tracking Spotlight Card on Neutral Obsidian Slate (#0E0E12).
+ * Calm Pointer-Tracking Spotlight Card on Matte Warm Ivory (#FAF7F0).
  */
 interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -75,7 +75,7 @@ export function SpotlightCard({
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       className={cn(
-        'group/spotlight relative rounded-2xl border border-white/[0.09] bg-[#0E0E12]/90 backdrop-blur-md transition-[border-color,transform,box-shadow] duration-200 ease-out hover:border-white/20 hover:shadow-[0_24px_60px_-22px_rgba(0,0,0,0.95)]',
+        'group/spotlight relative rounded-2xl border border-border bg-card/95 transition-[border-color,transform,box-shadow] duration-200 ease-out hover:border-[#2B6E73]/30 shadow-[0_6px_24px_-14px_rgba(35,39,36,0.10)] hover:shadow-[0_14px_34px_-16px_rgba(35,39,36,0.16)]',
         borderBeam && 'border-beam-ring',
         className
       )}
@@ -236,51 +236,6 @@ export function CountUpMetric({ value }: { value: string }) {
 }
 
 /**
- * Aceternity Architectural Dot Matrix & Dynamic Vivid Radial Spotlight Cone.
- */
-export function HeroArchitecturalBackdrop() {
-  return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-      {/* Crisp architectural dot grid */}
-      <div
-        className="absolute inset-0 opacity-60"
-        style={{
-          backgroundImage:
-            'radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-          maskImage: 'radial-gradient(ellipse 72% 60% at 50% 38%, black 18%, transparent 82%)',
-          WebkitMaskImage:
-            'radial-gradient(ellipse 72% 60% at 50% 38%, black 18%, transparent 82%)',
-        }}
-      />
-
-      {/* Overhead vibrant spotlight cone powered by CSS accent glow */}
-      <motion.div
-        initial={{ opacity: 0.8, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute -top-48 left-1/2 -translate-x-1/2 h-[540px] w-[860px] rounded-full blur-3xl"
-        style={{
-          background:
-            'radial-gradient(ellipse at center, var(--accent-glow) 0%, var(--accent-tint) 42%, transparent 72%)',
-          opacity: 0.42,
-        }}
-      />
-
-      {/* Razor horizon beam */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-[min(90vw,820px)]"
-        style={{
-          background:
-            'linear-gradient(90deg, transparent, var(--accent-bright), transparent)',
-          opacity: 0.55,
-        }}
-      />
-    </div>
-  );
-}
-
-/**
  * High-Contrast Section Heading with Bold Typographic Hierarchy.
  */
 export function SectionHeading({
@@ -320,10 +275,10 @@ export function SectionHeading({
           {kicker}
         </p>
       )}
-      <h2 className="text-3xl sm:text-4xl md:text-[3.25rem] font-extrabold font-headline tracking-[-0.03em] leading-[1.08] text-white text-balance">
+      <h2 className="text-3xl sm:text-4xl md:text-[3.25rem] font-extrabold font-headline tracking-[-0.03em] leading-[1.08] text-foreground text-balance">
         {renderTitle()}
       </h2>
-      <p className="text-sm sm:text-base md:text-lg text-zinc-300 mt-3 sm:mt-4 leading-relaxed max-w-2xl mx-auto font-normal">
+      <p className="text-base md:text-lg text-[#3D433E] mt-3 sm:mt-4 leading-[1.65] max-w-2xl mx-auto font-normal">
         {subtitle}
       </p>
     </div>

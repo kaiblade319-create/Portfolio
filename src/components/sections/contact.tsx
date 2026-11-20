@@ -112,37 +112,37 @@ const Contact = () => {
                   >
                     Direct Channel
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold font-headline text-white leading-tight">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold font-headline text-foreground leading-tight">
                     Let&apos;s turn data into{' '}
                     <span className="text-underline-accent">measurable</span> results.
                   </h3>
-                  <p className="text-sm sm:text-[15px] text-zinc-300 leading-[1.75]">
-                    Looking for a <strong className="text-white font-semibold">Data Analyst</strong>{' '}
-                    or <strong className="text-white font-semibold">Technical Project Coordinator</strong>{' '}
+                  <p className="text-base text-[#3D433E] leading-[1.75]">
+                    Looking for a <strong className="text-foreground font-semibold">Data Analyst</strong>{' '}
+                    or <strong className="text-foreground font-semibold">Technical Project Coordinator</strong>{' '}
                     who combines SQL/Python diagnostics with clear stakeholder communication? Send a note below.
                   </p>
                 </div>
 
-                <div className="space-y-3 pt-4 border-t border-white/[0.08]">
-                  <div className="flex items-center gap-3 text-sm text-zinc-200">
+                <div className="space-y-3 pt-4 border-t border-border">
+                  <div className="flex items-center gap-3 text-sm text-[#3D433E]">
                     <Clock className="h-4 w-4 shrink-0" style={{ color: 'var(--accent-bright)' }} />
                     <span>
-                      Typical response: <strong className="text-white">Within 24 hours</strong>
+                      Typical response: <strong className="text-foreground">Within 24 hours</strong>
                     </span>
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-zinc-200">
+                  <div className="flex items-center gap-3 text-sm text-[#3D433E]">
                     <MapPin className="h-4 w-4 shrink-0" style={{ color: 'var(--accent-bright)' }} />
                     <span>
-                      Palghar · <strong className="text-white">Onsite / Remote / Hybrid</strong>
+                      Palghar · <strong className="text-foreground">Onsite / Remote / Hybrid</strong>
                     </span>
                   </div>
 
                   <div className="pt-3 flex items-center justify-between gap-2">
-                    <span className="text-xs font-mono text-zinc-400">Share with your team</span>
+                    <span className="text-xs font-mono text-muted-foreground">Share with your team</span>
                     <button
                       type="button"
                       onClick={handleCopyPortfolioUrl}
-                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.09] text-white font-mono text-xs transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-border bg-background hover:border-[#2B6E73]/40 hover:bg-secondary text-foreground font-mono text-xs transition-colors cursor-pointer"
                     >
                       {copiedUrl ? (
                         <>
@@ -173,7 +173,7 @@ const Contact = () => {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-xs sm:text-sm font-semibold text-zinc-200">
+                          <FormLabel className="text-xs sm:text-sm font-semibold text-foreground">
                             Name
                           </FormLabel>
                           <FormControl>
@@ -182,7 +182,7 @@ const Contact = () => {
                               {...field}
                               disabled={isSubmitting}
                               autoComplete="off"
-                              className="h-11 rounded-xl bg-[#050507]/85 border-white/15 focus-visible:ring-1 focus-visible:ring-white/40 focus-visible:border-white/40 text-sm text-white placeholder:text-zinc-500 transition-colors"
+                              className="h-11 rounded-xl bg-background border-border focus-visible:ring-1 focus-visible:ring-[var(--accent-border)] focus-visible:border-[var(--accent-border)] text-sm text-foreground placeholder:text-muted-foreground/75 transition-colors"
                             />
                           </FormControl>
                           <FormMessage />
@@ -194,7 +194,7 @@ const Contact = () => {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-xs sm:text-sm font-semibold text-zinc-200">
+                          <FormLabel className="text-xs sm:text-sm font-semibold text-foreground">
                             Email
                           </FormLabel>
                           <FormControl>
@@ -203,7 +203,7 @@ const Contact = () => {
                               {...field}
                               disabled={isSubmitting}
                               autoComplete="off"
-                              className="h-11 rounded-xl bg-[#050507]/85 border-white/15 focus-visible:ring-1 focus-visible:ring-white/40 focus-visible:border-white/40 text-sm text-white placeholder:text-zinc-500 transition-colors"
+                              className="h-11 rounded-xl bg-background border-border focus-visible:ring-1 focus-visible:ring-[var(--accent-border)] focus-visible:border-[var(--accent-border)] text-sm text-foreground placeholder:text-muted-foreground/75 transition-colors"
                             />
                           </FormControl>
                           <FormMessage />
@@ -216,7 +216,7 @@ const Contact = () => {
                     name="subject"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-xs sm:text-sm font-semibold text-zinc-200">
+                        <FormLabel className="text-xs sm:text-sm font-semibold text-foreground">
                           Subject
                         </FormLabel>
                         <FormControl>
@@ -225,7 +225,7 @@ const Contact = () => {
                             {...field}
                             disabled={isSubmitting}
                             autoComplete="off"
-                            className="h-11 rounded-xl bg-[#050507]/85 border-white/15 focus-visible:ring-1 focus-visible:ring-white/40 focus-visible:border-white/40 text-sm text-white placeholder:text-zinc-500 transition-colors"
+                            className="h-11 rounded-xl bg-background border-border focus-visible:ring-1 focus-visible:ring-[var(--accent-border)] focus-visible:border-[var(--accent-border)] text-sm text-foreground placeholder:text-muted-foreground/75 transition-colors"
                           />
                         </FormControl>
                         <FormMessage />
@@ -237,14 +237,14 @@ const Contact = () => {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-xs sm:text-sm font-semibold text-zinc-200">
+                        <FormLabel className="text-xs sm:text-sm font-semibold text-foreground">
                           Message
                         </FormLabel>
                         <FormControl>
                           <Textarea
                             placeholder="Share details about your role, project timeline, or collaboration idea..."
                             {...field}
-                            className="min-h-[140px] rounded-xl bg-[#050507]/85 border-white/15 focus-visible:ring-1 focus-visible:ring-white/40 focus-visible:border-white/40 text-sm text-white placeholder:text-zinc-500 resize-none transition-colors"
+                            className="min-h-[140px] rounded-xl bg-background border-border focus-visible:ring-1 focus-visible:ring-[var(--accent-border)] focus-visible:border-[var(--accent-border)] text-sm text-foreground placeholder:text-muted-foreground/75 resize-none transition-colors"
                             disabled={isSubmitting}
                             autoComplete="off"
                           />
@@ -260,7 +260,7 @@ const Contact = () => {
                       style={{
                         backgroundColor: 'var(--accent-solid)',
                         color: 'var(--accent-ink)',
-                        boxShadow: '0 4px 24px -4px var(--accent-glow)',
+                        boxShadow: '0 6px 18px -6px rgba(43, 110, 115, 0.35)',
                       }}
                       disabled={isSubmitting}
                     >

@@ -25,8 +25,8 @@ export function InlineMessage({ children, variant = 'default', show = true }: In
           className={cn(
             'flex items-center gap-2 rounded-md p-2 text-sm',
             {
-              'bg-green-500/10 text-green-400': variant === 'default',
-              'bg-red-500/10 text-red-400': variant === 'destructive',
+              'bg-[#2B6E73]/10 text-[#235B60] border border-[#2B6E73]/25': variant === 'default',
+              'bg-red-700/10 text-red-800 border border-red-700/20': variant === 'destructive',
             }
           )}
         >

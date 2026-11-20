@@ -18,8 +18,8 @@ export default function Image() {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '72px',
-          color: '#FAFAFA',
-          background: 'linear-gradient(135deg, #050507 0%, #141418 100%)',
+          color: '#232724',
+          background: 'linear-gradient(135deg, #F5F1E8 0%, #ECE6DA 100%)',
           fontFamily: 'sans-serif',
         }}
       >
@@ -29,33 +29,33 @@ export default function Image() {
               width: '48px',
               height: '48px',
               borderRadius: '12px',
-              background: 'rgba(255, 94, 26, 0.16)',
-              border: '1px solid rgba(255, 130, 67, 0.45)',
+              background: '#FAF7F0',
+              border: '1px solid #DDD6C8',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: '20px',
               fontWeight: 700,
-              color: '#FF8243',
+              color: '#2B6E73',
             }}
           >
             KH
           </div>
-          <div style={{ fontSize: '20px', color: '#FF8243', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+          <div style={{ fontSize: '20px', color: '#2B6E73', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
             Data Analytics &amp; Decision Intelligence
           </div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <div style={{ fontSize: '76px', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+          <div style={{ fontSize: '76px', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.02em', color: '#232724' }}>
             Kaushar Halani
           </div>
-          <div style={{ fontSize: '32px', color: '#D4D4D8', fontWeight: 600 }}>
+          <div style={{ fontSize: '32px', color: '#3D433E', fontWeight: 600 }}>
             Data Analyst · Technical Project Coordinator
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '16px', fontSize: '20px', color: '#A1A1AA' }}>
+        <div style={{ display: 'flex', gap: '16px', fontSize: '20px', color: '#5D655E' }}>
           <span>SQL &amp; Python Analytics</span>
           <span>·</span>
           <span>Root-Cause Diagnostics</span>

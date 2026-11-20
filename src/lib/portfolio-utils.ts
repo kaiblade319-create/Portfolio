@@ -88,3 +88,15 @@ export function getSkillsBentoSpanClass(index: number, total: number): string {
   }
   return 'col-span-1';
 }
+
+export function computeSectionScrollTop(
+  sectionId: string,
+  rectTop: number,
+  scrollY: number,
+  headerHeight: number
+): number {
+  if (sectionId === 'home') {
+    return 0;
+  }
+  return Math.max(0, Math.round(rectTop + scrollY - headerHeight));
+}

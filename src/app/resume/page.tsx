@@ -56,8 +56,8 @@ const ResumeDialog = ({
           variant={primary ? 'default' : 'outline'}
           className={
             primary
-              ? 'btn-shimmer rounded-xl bg-[var(--accent-solid)] text-[var(--accent-ink)] font-semibold hover:bg-[var(--accent-solid-hover)] shadow-[0_0_24px_-6px_var(--accent-glow)] text-xs sm:text-sm h-11 px-5 whitespace-nowrap shrink-0'
-              : 'rounded-xl border-white/[0.12] bg-[#050507] hover:bg-white/[0.06] hover:border-[var(--accent-border)] text-white text-xs sm:text-sm font-medium h-11 px-5 whitespace-nowrap shrink-0'
+              ? 'btn-shimmer rounded-xl bg-[var(--accent-solid)] text-[var(--accent-ink)] font-semibold hover:bg-[var(--accent-solid-hover)] text-xs sm:text-sm h-11 px-5 whitespace-nowrap shrink-0'
+              : 'rounded-xl border-border bg-background hover:bg-secondary hover:border-[var(--accent-border)] text-foreground text-xs sm:text-sm font-medium h-11 px-5 whitespace-nowrap shrink-0'
           }
         >
           {type === 'Text' ? (
@@ -68,25 +68,25 @@ const ResumeDialog = ({
           {type} Resume
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] border border-white/[0.12] bg-[#0E0E12]/95 backdrop-blur-xl rounded-2xl">
+      <DialogContent className="sm:max-w-[425px] border border-border bg-card backdrop-blur-xl rounded-2xl">
         <DialogHeader>
-          <DialogTitle className="font-headline text-lg sm:text-xl font-bold text-white">
+          <DialogTitle className="font-headline text-lg sm:text-xl font-bold text-foreground">
             {role} - {type} Resume
           </DialogTitle>
-          <DialogDescription className="text-xs sm:text-sm text-zinc-400">
+          <DialogDescription className="text-xs sm:text-sm text-muted-foreground">
             Choose an option to view or save the resume.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex-col sm:flex-col sm:space-x-0 gap-2 sm:gap-2 pt-2">
           {isReady ? (
             <>
-              <Button asChild className="btn-shimmer rounded-xl bg-[var(--accent-solid)] text-[var(--accent-ink)] font-semibold hover:bg-[var(--accent-solid-hover)] shadow-[0_0_24px_-6px_var(--accent-glow)]">
+              <Button asChild className="btn-shimmer rounded-xl bg-[var(--accent-solid)] text-[var(--accent-ink)] font-semibold hover:bg-[var(--accent-solid-hover)]">
                 <Link href={previewUrl} target="_blank">
                   <Eye className="mr-2 h-4 w-4" />
                   Preview
                 </Link>
               </Button>
-              <Button asChild variant="secondary" className="rounded-xl border border-white/[0.12]" onClick={handleDownload}>
+              <Button asChild variant="secondary" className="rounded-xl border border-border" onClick={handleDownload}>
                 <Link href={downloadUrl} download>
                   <Download className="mr-2 h-4 w-4" />
                   Download
@@ -98,7 +98,7 @@ const ResumeDialog = ({
             </>
           ) : (
             <>
-              <Button asChild className="btn-shimmer rounded-xl bg-[var(--accent-solid)] text-[var(--accent-ink)] font-semibold hover:bg-[var(--accent-solid-hover)] shadow-[0_0_24px_-6px_var(--accent-glow)]">
+              <Button asChild className="btn-shimmer rounded-xl bg-[var(--accent-solid)] text-[var(--accent-ink)] font-semibold hover:bg-[var(--accent-solid-hover)]">
                 <Link href="/#contact">
                   Request Latest Resume
                 </Link>
@@ -116,7 +116,7 @@ const ResumeDialog = ({
 
 export default function ResumePage() {
   return (
-    <div className="flex flex-col min-h-dvh bg-[#050507] text-foreground">
+    <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <SubPageHeader backHref="/" backLabel="Back to Home" breadcrumb="Data Analyst Resume" />
       <main className="flex-1 relative">
         <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16">
@@ -124,45 +124,45 @@ export default function ResumePage() {
             <span className="block text-xs font-mono font-semibold uppercase tracking-[0.2em] text-[var(--accent-bright)]">
               Target Role
             </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold font-headline tracking-tight text-white">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold font-headline tracking-tight text-foreground">
               Data Analyst <span className="text-[var(--accent-bright)]">Resume</span>
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-zinc-300 leading-relaxed">
-              Focused on <strong className="text-white font-semibold">SQL, Python, BI diagnostics</strong>, and structured stakeholder coordination at Blink Beyond.
+            <p className="text-base md:text-lg text-[#3D433E] leading-relaxed">
+              Focused on <strong className="text-foreground font-semibold">SQL, Python, BI diagnostics</strong>, and structured stakeholder coordination at Blink Beyond.
             </p>
           </div>
 
           <div className="max-w-2xl mx-auto">
             <SpotlightCard className="p-6 sm:p-8">
               <div className="flex flex-col space-y-6">
-                <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-white/[0.08] text-xs font-mono">
+                <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-border text-xs font-mono">
                   <span className="font-semibold uppercase tracking-[0.16em] text-[var(--accent-bright)]">
                     Primary Role
                   </span>
-                  <span className="text-zinc-400">Open to Internships &amp; Entry-Level</span>
+                  <span className="text-muted-foreground">Open to Internships &amp; Entry-Level</span>
                 </div>
 
                 <div className="space-y-2 text-center sm:text-left">
-                  <h2 className="text-2xl sm:text-3xl font-extrabold font-headline text-white">
+                  <h2 className="text-2xl sm:text-3xl font-extrabold font-headline text-foreground">
                     {dataAnalystResume.role}
                   </h2>
-                  <p className="text-sm sm:text-[15px] text-zinc-300 leading-relaxed">
+                  <p className="text-sm sm:text-base text-[#3D433E] leading-relaxed">
                     {dataAnalystResume.description}
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.08] border-y border-white/[0.08] py-3.5 text-center sm:text-left">
+                <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border border-y border-border py-3.5 text-center sm:text-left">
                   <div className="pb-2.5 sm:pb-0 sm:pr-4">
-                    <p className="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Core Stack</p>
-                    <p className="text-sm font-semibold text-white mt-0.5">SQL · Python · BI</p>
+                    <p className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground">Core Stack</p>
+                    <p className="text-sm font-semibold text-foreground mt-0.5">SQL · Python · BI</p>
                   </div>
                   <div className="py-2.5 sm:py-0 sm:px-4">
-                    <p className="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Flagship Build</p>
-                    <p className="text-sm font-semibold text-white mt-0.5">Churn Pipeline (0.87 AUC)</p>
+                    <p className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground">Flagship Build</p>
+                    <p className="text-sm font-semibold text-foreground mt-0.5">Churn Pipeline (0.87 AUC)</p>
                   </div>
                   <div className="pt-2.5 sm:pt-0 sm:pl-4">
-                    <p className="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Experience</p>
-                    <p className="text-sm font-semibold text-white mt-0.5">Blink Beyond · Coordinator</p>
+                    <p className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground">Experience</p>
+                    <p className="text-sm font-semibold text-foreground mt-0.5">Blink Beyond · Coordinator</p>
                   </div>
                 </div>
 

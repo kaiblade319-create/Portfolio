@@ -44,7 +44,7 @@ const Projects = () => {
               <div
                 role="tablist"
                 aria-label="Project track filters"
-                className="inline-flex items-center gap-1 p-1 bg-[#0E0E12]/90 rounded-full border border-white/10 backdrop-blur-md"
+                className="inline-flex items-center gap-1 p-1 bg-card/95 rounded-full border border-border shadow-sm"
               >
                 {projectFilters.map((filter) => {
                   const isSelected = activeTab === filter;
@@ -56,7 +56,7 @@ const Projects = () => {
                       onClick={() => setActiveTab(filter)}
                       className={cn(
                         'relative px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 whitespace-nowrap shrink-0',
-                        isSelected ? 'font-semibold' : 'text-zinc-300 hover:text-white'
+                        isSelected ? 'font-semibold' : 'text-[#3D433E] hover:text-foreground'
                       )}
                       style={isSelected ? { color: 'var(--accent-ink)' } : undefined}
                     >
@@ -67,7 +67,6 @@ const Projects = () => {
                           className="absolute inset-0 rounded-full -z-10"
                           style={{
                             backgroundColor: 'var(--accent-solid)',
-                            boxShadow: '0 2px 16px var(--accent-glow)',
                           }}
                         />
                       )}
@@ -83,14 +82,14 @@ const Projects = () => {
 
           {filteredProjects.length === 0 ? (
             <SpotlightCard className="text-center py-12 px-6 max-w-xl mx-auto">
-              <p className="text-zinc-300 text-sm sm:text-base mb-4">
+              <p className="text-[#3D433E] text-sm sm:text-base mb-4">
                 No {activeTab.toLowerCase()} projects added yet. More builds in progress.
               </p>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => setActiveTab('All')}
-                className="rounded-xl border-white/15 bg-white/[0.05] hover:bg-white/[0.12] text-white text-xs sm:text-sm h-10 px-5"
+                className="rounded-xl border-border bg-background hover:bg-secondary text-foreground text-xs sm:text-sm h-10 px-5"
               >
                 Show All Builds
               </Button>
@@ -101,23 +100,23 @@ const Projects = () => {
               <TiltShowcaseCard key={project.id} className="group overflow-hidden">
                 <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
                   {/* Left Architectural Diagram & Stack Column */}
-                  <div className="lg:col-span-7 p-5 sm:p-6 flex flex-col justify-between bg-white/[0.015] border-b lg:border-b-0 lg:border-r border-white/[0.08]">
-                    <div className="flex items-center justify-between gap-2 text-xs font-mono uppercase tracking-[0.14em] text-zinc-400 mb-3">
+                  <div className="lg:col-span-7 p-5 sm:p-6 flex flex-col justify-between bg-secondary/35 border-b lg:border-b-0 lg:border-r border-border">
+                    <div className="flex items-center justify-between gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground mb-3">
                       <div className="flex items-center gap-2">
                         <span className="font-semibold" style={{ color: 'var(--accent-bright)' }}>
                           {project.projectTrack === 'Independent'
                             ? 'Independent Build'
                             : 'Guided Build'}
                         </span>
-                        <span aria-hidden="true" className="text-zinc-600">·</span>
-                        <span className="text-zinc-300">{project.category}</span>
+                        <span aria-hidden="true" className="text-muted-foreground/60">·</span>
+                        <span className="text-[#3D433E]">{project.category}</span>
                       </div>
-                      <span className="text-[11px] font-semibold hidden sm:inline text-zinc-300">
+                      <span className="text-[11px] font-semibold hidden sm:inline text-[#3D433E]">
                         Flagship Case Study
                       </span>
                     </div>
 
-                    <div className="aspect-[16/9] relative w-full overflow-hidden rounded-xl border border-white/10 bg-zinc-950">
+                    <div className="aspect-[16/9] relative w-full overflow-hidden rounded-xl border border-border bg-secondary">
                       {project.imageUrl ? (
                         <Image
                           src={project.imageUrl}
@@ -130,14 +129,14 @@ const Projects = () => {
                           loading="lazy"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-zinc-950 text-zinc-500 text-xs font-mono tracking-widest">
+                        <div className="w-full h-full flex items-center justify-center bg-secondary text-muted-foreground text-xs font-mono tracking-widest">
                           {project.title}
                         </div>
                       )}
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-35" />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#232724]/18 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-35" />
                     </div>
 
-                    <div className="pt-3.5 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-zinc-300">
+                    <div className="pt-3.5 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-[#3D433E]">
                       <span>{project.tool}</span>
                       {project.caseStudy?.kpis?.[2] && (
                         <span
@@ -153,23 +152,23 @@ const Projects = () => {
                   {/* Right Details, Bold Highlights & CTA Column */}
                   <div className="lg:col-span-5 p-6 sm:p-7 flex flex-col justify-between space-y-5">
                     <div className="space-y-4">
-                      <h3 className="text-xl sm:text-2xl font-extrabold font-headline text-white leading-snug tracking-tight">
+                      <h3 className="text-xl sm:text-2xl font-extrabold font-headline text-foreground leading-snug tracking-tight">
                         {project.title}
                       </h3>
 
-                      <p className="text-zinc-300 text-[15px] leading-[1.7]">
+                      <p className="text-[#3D433E] text-base leading-[1.7]">
                         End-to-end ML pipeline engineered to{' '}
                         <span className="text-underline-accent">
                           diagnose silent churn root causes
                         </span>
                         , predict cancellations{' '}
-                        <strong className="text-white font-semibold">30 days early</strong>
+                        <strong className="text-foreground font-semibold">30 days early</strong>
                         , and automate retention queues.
                       </p>
 
                       {/* Unboxed Hairline KPI Spec Strip */}
                       {project.caseStudy?.kpis && (
-                        <div className="grid grid-cols-3 divide-x divide-white/10 border-y border-white/10 py-3">
+                        <div className="grid grid-cols-3 divide-x divide-border border-y border-border py-3">
                           {project.caseStudy.kpis.map((kpi) => (
                             <div key={kpi.label} className="px-2 first:pl-0 last:pr-0 text-center">
                               <p
@@ -178,7 +177,7 @@ const Projects = () => {
                               >
                                 {kpi.value}
                               </p>
-                              <p className="text-[10px] sm:text-[11px] font-mono text-zinc-400 leading-tight mt-0.5">
+                              <p className="text-[10px] sm:text-[11px] font-mono text-muted-foreground leading-tight mt-0.5">
                                 {kpi.label}
                               </p>
                             </div>
@@ -186,7 +185,7 @@ const Projects = () => {
                         </div>
                       )}
 
-                      <p className="text-xs font-mono text-zinc-400">
+                      <p className="text-xs font-mono text-muted-foreground">
                         {project.projectTypes.join(' · ')}
                       </p>
                     </div>
@@ -210,7 +209,7 @@ const Projects = () => {
                               asChild
                               variant="outline"
                               size="default"
-                              className="w-full text-xs border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.1] text-white h-10 rounded-xl whitespace-nowrap shrink-0"
+                              className="w-full text-xs border-border bg-background hover:border-[#2B6E73]/40 hover:bg-secondary text-foreground h-10 rounded-xl whitespace-nowrap shrink-0"
                             >
                               <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                                 <Github className="mr-1.5 h-3.5 w-3.5" />
@@ -226,7 +225,7 @@ const Projects = () => {
                               style={{
                                 backgroundColor: 'var(--accent-solid)',
                                 color: 'var(--accent-ink)',
-                                boxShadow: '0 4px 22px -4px var(--accent-glow)',
+                                boxShadow: '0 6px 18px -6px rgba(43, 110, 115, 0.35)',
                               }}
                             >
                               <Link href={project.link} target="_blank" rel="noopener noreferrer">
@@ -242,7 +241,7 @@ const Projects = () => {
                             style={{
                               backgroundColor: 'var(--accent-solid)',
                               color: 'var(--accent-ink)',
-                              boxShadow: '0 4px 22px -4px var(--accent-glow)',
+                              boxShadow: '0 6px 18px -6px rgba(43, 110, 115, 0.35)',
                             }}
                           >
                             <Link href={project.docsPath} prefetch={true}>
@@ -255,7 +254,7 @@ const Projects = () => {
                               asChild
                               variant="outline"
                               size="default"
-                              className="w-full text-xs border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.1] text-white h-10 rounded-xl whitespace-nowrap shrink-0"
+                              className="w-full text-xs border-border bg-background hover:border-[#2B6E73]/40 hover:bg-secondary text-foreground h-10 rounded-xl whitespace-nowrap shrink-0"
                             >
                               <Link href={project.paperUrl} target="_blank" rel="noopener noreferrer">
                                 <ScrollText
@@ -282,17 +281,17 @@ const Projects = () => {
                 >
                   <div className="flex flex-col justify-between h-full">
                     <div className="p-5 sm:p-6 pb-4 space-y-3.5">
-                      <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-zinc-400">
+                      <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-muted-foreground">
                         <span className="font-semibold" style={{ color: 'var(--accent-bright)' }}>
                           {project.projectTrack === 'Independent'
                             ? 'Independent Build'
                             : 'Guided Build'}
                         </span>
-                        <span aria-hidden="true" className="text-zinc-600">·</span>
-                        <span className="text-zinc-300">{project.category}</span>
+                        <span aria-hidden="true" className="text-muted-foreground/60">·</span>
+                        <span className="text-[#3D433E]">{project.category}</span>
                       </div>
 
-                      <div className="aspect-[16/9] relative w-full overflow-hidden rounded-xl border border-white/10 bg-zinc-950">
+                      <div className="aspect-[16/9] relative w-full overflow-hidden rounded-xl border border-border bg-secondary">
                         {project.imageUrl ? (
                           <Image
                             src={project.imageUrl}
@@ -305,33 +304,33 @@ const Projects = () => {
                             loading="lazy"
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-zinc-950 text-zinc-500 text-xs font-mono tracking-widest">
+                          <div className="w-full h-full flex items-center justify-center bg-secondary text-muted-foreground text-xs font-mono tracking-widest">
                             {project.title}
                           </div>
                         )}
                       </div>
 
-                      <h3 className="text-lg sm:text-xl font-bold font-headline pt-1 text-white leading-snug">
+                      <h3 className="text-lg sm:text-xl font-bold font-headline pt-1 text-foreground leading-snug">
                         {project.title}
                       </h3>
 
-                      <p className="text-zinc-300 text-sm leading-relaxed">
+                      <p className="text-[#3D433E] text-sm leading-relaxed">
                         {project.description}
                       </p>
 
-                      <p className="text-xs font-mono text-zinc-400">
+                      <p className="text-xs font-mono text-muted-foreground">
                         {project.projectTypes.join(' · ')}
                       </p>
                     </div>
 
-                    <div className="px-5 sm:px-6 py-4 border-t border-white/[0.08] bg-white/[0.015] mt-auto">
+                    <div className="px-5 sm:px-6 py-4 border-t border-border bg-secondary/35 mt-auto">
                       <div className="grid grid-cols-2 gap-2.5 w-full">
                         {project.githubUrl && (
                           <Button
                             asChild
                             variant="outline"
                             size="default"
-                            className="w-full text-xs border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.1] text-white h-10 rounded-xl whitespace-nowrap shrink-0"
+                            className="w-full text-xs border-border bg-background hover:border-[#2B6E73]/40 hover:bg-secondary text-foreground h-10 rounded-xl whitespace-nowrap shrink-0"
                           >
                             <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                               <Github className="mr-1.5 h-3.5 w-3.5" />
@@ -359,7 +358,7 @@ const Projects = () => {
                           asChild
                           variant="outline"
                           size="default"
-                          className="w-full text-xs border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.1] text-white h-10 rounded-xl whitespace-nowrap shrink-0"
+                          className="w-full text-xs border-border bg-background hover:border-[#2B6E73]/40 hover:bg-secondary text-foreground h-10 rounded-xl whitespace-nowrap shrink-0"
                         >
                           <Link href={project.docsPath} prefetch={true}>
                             <BookOpen className="mr-1.5 h-3.5 w-3.5" style={{ color: 'var(--accent-bright)' }} />
@@ -371,7 +370,7 @@ const Projects = () => {
                             asChild
                             variant="outline"
                             size="default"
-                            className="w-full text-xs border-white/15 bg-white/[0.04] hover:border-white/30 hover:bg-white/[0.1] text-white h-10 rounded-xl whitespace-nowrap shrink-0"
+                            className="w-full text-xs border-border bg-background hover:border-[#2B6E73]/40 hover:bg-secondary text-foreground h-10 rounded-xl whitespace-nowrap shrink-0"
                           >
                             <Link href={project.paperUrl} target="_blank" rel="noopener noreferrer">
                               <ScrollText className="mr-1.5 h-3.5 w-3.5" style={{ color: 'var(--accent-bright)' }} />

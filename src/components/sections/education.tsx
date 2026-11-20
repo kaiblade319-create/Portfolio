@@ -26,12 +26,12 @@ const Education = () => {
               <AccordionItem value={`item-${edu.id}`} className="border-none">
                 <SpotlightCard className="overflow-hidden">
                   <div className="p-6 sm:p-8 space-y-4">
-                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-4 border-b border-white/[0.08]">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-4 border-b border-border">
                       <div className="space-y-1">
-                        <h3 className="text-xl sm:text-2xl font-extrabold font-headline leading-snug text-white tracking-tight">
+                        <h3 className="text-xl sm:text-2xl font-extrabold font-headline leading-snug text-foreground tracking-tight">
                           {edu.degree}
                         </h3>
-                        <p className="text-sm sm:text-base font-semibold text-zinc-200">
+                        <p className="text-sm sm:text-base font-semibold text-[#3D433E]">
                           {edu.institution}
                         </p>
                       </div>
@@ -44,13 +44,13 @@ const Education = () => {
                       </span>
                     </div>
 
-                    <p className="text-sm sm:text-[15px] text-zinc-300 leading-[1.75] max-w-[65ch]">
+                    <p className="text-base text-[#3D433E] leading-[1.75] max-w-[65ch]">
                       Pursuing a{' '}
-                      <strong className="text-white font-semibold">
+                      <strong className="text-foreground font-semibold">
                         Computer Science &amp; Data Science specialization
                       </strong>{' '}
                       covering SQL database systems,{' '}
-                      <strong className="text-white font-semibold">
+                      <strong className="text-foreground font-semibold">
                         predictive analytics
                       </strong>
                       , and scalable data workflows.
@@ -64,9 +64,9 @@ const Education = () => {
                     </AccordionTrigger>
                   </div>
 
-                  <AccordionContent className="px-6 sm:px-8 pb-6 pt-0 border-t border-white/[0.08] mt-1 space-y-5">
+                  <AccordionContent className="px-6 sm:px-8 pb-6 pt-0 border-t border-border mt-1 space-y-5">
                     <div className="pt-4">
-                      <h4 className="font-bold text-xs text-white uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                      <h4 className="font-bold text-xs text-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
                         <Award
                           className="h-3.5 w-3.5"
                           style={{ color: 'var(--accent-bright)' }}
@@ -77,7 +77,7 @@ const Education = () => {
                         {edu.details.highlights.map((detail, i) => (
                           <li
                             key={i}
-                            className="flex items-start gap-2.5 text-sm text-zinc-300 leading-relaxed"
+                            className="flex items-start gap-2.5 text-sm text-[#3D433E] leading-relaxed"
                           >
                             <span
                               aria-hidden="true"
@@ -93,7 +93,7 @@ const Education = () => {
                     </div>
 
                     <div>
-                      <h4 className="font-bold text-xs text-white uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                      <h4 className="font-bold text-xs text-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
                         <GraduationCap
                           className="h-3.5 w-3.5"
                           style={{ color: 'var(--accent-bright)' }}
@@ -104,7 +104,7 @@ const Education = () => {
                         {edu.details.coursework.map((course, i) => (
                           <span
                             key={i}
-                            className="text-xs sm:text-[13px] font-medium px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-zinc-100"
+                            className="text-xs sm:text-[13px] font-medium px-3 py-1.5 rounded-lg bg-background border border-border text-foreground"
                           >
                             {course}
                           </span>

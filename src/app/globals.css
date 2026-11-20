@@ -5,58 +5,56 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 4.5rem;
-    color-scheme: dark;
+    color-scheme: light;
   }
 }
 
 @layer base {
   /*
-   * Stark Jet-Black Canvas (60%) + Neutral Zinc Cards (30%) + Signal Orange Accent (10%)
+   * Combo 1: Warm Cream Paper (#F5F1E8, 60%) + Matte Warm Ivory (#FAF7F0, 30%) + Muted Deep Sage-Teal (#2B6E73, 10%)
    */
-  :root,
-  .dark {
-    --background: 240 10% 2%; /* #050507 Pure Stark Obsidian */
-    --foreground: 0 0% 98%; /* #FAFAFA High-Contrast White */
+  :root {
+    --background: 41 36% 94%; /* #F5F1E8 Warm Cream Paper */
+    --foreground: 135 6% 15%; /* #232724 Deep Warm Charcoal Ink */
 
-    --card: 240 9% 6%; /* #0E0E12 Elevated Dark Zinc */
-    --card-foreground: 0 0% 98%;
+    --card: 42 45% 96%; /* #FAF7F0 Matte Warm Ivory */
+    --card-foreground: 135 6% 15%;
 
-    --popover: 240 9% 6%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 42 45% 96%;
+    --popover-foreground: 135 6% 15%;
 
-    --secondary: 240 6% 11%; /* #1A1A20 */
-    --secondary-foreground: 0 0% 96%;
+    --secondary: 40 29% 89%; /* #ECE6DA Soft Warm Sand */
+    --secondary-foreground: 135 6% 18%;
 
-    --muted: 240 6% 12%;
-    --muted-foreground: 240 5% 68%; /* Readable Silver (#A8A8B3) */
+    --muted: 40 29% 89%;
+    --muted-foreground: 128 4% 38%; /* #5D655E Soft Slate Olive */
 
-    --accent: 240 6% 15%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 40 29% 89%;
+    --accent-foreground: 135 6% 15%;
 
-    --destructive: 0 68% 45%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 58% 42%;
+    --destructive-foreground: 42 45% 96%;
 
-    --border: 240 6% 16%;
-    --input: 240 6% 17%;
+    --border: 40 23% 83%; /* #DDD6C8 Soft Matte Paper Hairline */
+    --input: 40 23% 83%;
 
     --radius: 0.75rem;
 
-    /* Locked Accent: Signal Orange */
-    --primary: 17 100% 56%; /* #FF5E1A */
-    --primary-foreground: 240 10% 2%;
-    --ring: 17 100% 56%;
+    /* Eye-Safe Matte Accent: Muted Deep Sage-Teal */
+    --primary: 184 46% 31%; /* #2B6E73 */
+    --primary-foreground: 42 45% 96%;
+    --ring: 184 46% 31%;
 
-    --accent-solid: #FF5E1A;
-    --accent-solid-hover: #FF783D;
-    --accent-ink: #050507;
-    --accent-bright: #FF8243;
-    --accent-soft: #FDBA74;
-    --accent-tint: rgba(255, 122, 61, 0.14);
-    --accent-tint-subtle: rgba(255, 94, 26, 0.06);
-    --accent-border: rgba(255, 130, 67, 0.38);
-    --accent-glow: rgba(255, 94, 26, 0.45);
-    --accent-spotlight: rgba(255, 122, 61, 0.11);
+    --accent-solid: #2B6E73;
+    --accent-solid-hover: #235B60;
+    --accent-ink: #FAF7F0;
+    --accent-bright: #266368;
+    --accent-soft: #2F6B66;
+    --accent-tint: rgba(43, 110, 115, 0.09);
+    --accent-tint-subtle: rgba(43, 110, 115, 0.045);
+    --accent-border: rgba(43, 110, 115, 0.28);
+    --accent-glow: rgba(35, 39, 36, 0.09);
+    --accent-spotlight: rgba(43, 110, 115, 0.045);
   }
 }
 
@@ -65,7 +63,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground text-base leading-[1.65];
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
   body ::selection {
@@ -91,7 +89,7 @@
 
   /* Precision Accent Underline */
   .text-underline-accent {
-    color: #ffffff;
+    color: var(--foreground);
     font-weight: 600;
     text-decoration: underline;
     text-decoration-color: var(--accent-bright);
@@ -101,7 +99,7 @@
   }
 }
 
-/* Primary Shimmer Sweep */
+/* Gentle Paper Shimmer Sweep */
 @keyframes shimmer-sweep {
   0% {
     transform: translateX(-120%) skewX(-18deg);
@@ -124,7 +122,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.36),
+    rgba(250, 247, 240, 0.24),
     transparent
   );
   transform: translateX(-120%) skewX(-18deg);
@@ -135,7 +133,7 @@
   animation: shimmer-sweep 0.72s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 21st.dev-style Rotating Border Beam for Flagship Showcase */
+/* Subtle Rotating Border Highlight for Flagship Showcase */
 @property --beam-angle {
   syntax: '<angle>';
   initial-value: 0deg;
@@ -157,7 +155,7 @@
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  padding: 1.25px;
+  padding: 1px;
   background: conic-gradient(
     from var(--beam-angle),
     transparent 65%,
@@ -167,9 +165,9 @@
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: border-beam-spin 7s linear infinite;
+  animation: border-beam-spin 9s linear infinite;
   pointer-events: none;
-  opacity: 0.75;
+  opacity: 0.25;
 }
 
 /* React Bits / 21st.dev Infinite GPU Tech Marquee */
