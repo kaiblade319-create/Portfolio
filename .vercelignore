@@ -4,6 +4,8 @@ node_modules
 out
 .playwright-cli
 .migration-backup
+.aistudio
+.agents
 artifacts
 lib
 attached_assets
